@@ -153,10 +153,10 @@ function noSchool() {
     document.getElementById('otsikko').textContent = nameOfDay() + ' ruokalista:';
 
     // Creating element informing no school
-    const otsikko = document.createElement('h1');
-    otsikko.textContent = 'Tänään ei ole koulua ):';
-    otsikko.className = 'info';
-    document.getElementById('otsikko').parentElement.appendChild(otsikko);
+    const title = document.createElement('h1');
+    title.textContent = 'Tänään ei ole koulua ):';
+    title.className = 'info';
+    document.getElementById('otsikko').parentElement.appendChild(title);
 
     // Removing course elements
     document.getElementById('seka').style.display = 'none';
