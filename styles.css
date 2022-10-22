@@ -1,3 +1,7 @@
+:root {
+    --field_border_radius: 2rem;
+}
+
 body {
     background-color: skyblue;
     font-size: 150%;
@@ -12,7 +16,7 @@ p {
 }
 
 .info {
-    border-radius: 1rem;
+    border-radius: var(--field_border_radius);
 
     margin: 1rem;
     padding: 1rem 1.5rem;
@@ -25,7 +29,7 @@ p {
 }
 
 .ateria {
-    border-radius: 1rem;
+    border-radius: var(--field_border_radius);
 
     margin: 1rem;
     padding: 0rem 1.5rem;
@@ -57,7 +61,7 @@ p {
 
 .nappi {
     font-size: 200%;
-    border-radius: 1rem;
+    border-radius: var(--field_border_radius);
 
     margin: 1rem;
     padding: 1.5rem;
