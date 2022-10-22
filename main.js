@@ -1,6 +1,6 @@
 function initButtons() {
-    document.getElementById('edellinen').addEventListener('mouseup', () => { window.location.href = getNewPage(-1); }, false)
-    document.getElementById('seuraava').addEventListener('mouseup', () => { window.location.href = getNewPage(+1); }, false)
+    document.getElementById('edellinen').addEventListener('mouseup', (event) => { if (event.button == 0) window.location.href = getNewPage(-1); }, false)
+    document.getElementById('seuraava').addEventListener('mouseup', () => { if (event.button == 0) window.location.href = getNewPage(+1); }, false)
 }
 
 /**
