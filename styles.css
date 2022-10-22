@@ -26,6 +26,8 @@ p {
 
 .ateriatyyppi {
     margin: 0rem;
+    width: 200px;
+    text-align: right;
 }
 
 .ateria {
