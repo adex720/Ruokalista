@@ -1,6 +1,9 @@
+/**
+ * Adds mouse event listeners to movement buttons.
+ */
 function initButtons() {
-    document.getElementById('edellinen').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, -1); }, false)
-    document.getElementById('seuraava').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, +1); }, false)
+    document.getElementById('edellinen').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, -1); }, false);
+    document.getElementById('seuraava').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, +1); }, false);
 }
 
 /**
@@ -185,7 +188,7 @@ function calculateDayDifference() {
     if (day == undefined) return 0;
     day = parseInt(day);
 
-    // Parsing day difference (ex. 11->4, -1->6)
+    // Parsing day difference (ex. 11 -> 4, -1 -> 6)
     var difference;
     if (day <= -7 || day >= 7) {
         day = day % 7;
