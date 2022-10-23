@@ -1,10 +1,12 @@
 :root {
-    --field_border_radius: 2rem;
     /* size of curved corners */
-    --between_margin: 2rem;
+    --field_border_radius: 2rem;
+
     /* vertical margin between title, courses and buttons*/
-    --contact-size-multiplier: 1.5;
+    --between_margin: 2rem;
+
     /* size multiplier of contact icons*/
+    --contact-size-multiplier: 1.5;
 }
 
 @media screen and (max-height: 685px) {
@@ -59,14 +61,15 @@ p {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 3rem;
+
     /* Distance between course category and the course */
+    gap: 3rem;
 }
 
 @media (max-resolution: 1dppx) {
     .ateria {
-        gap: 1rem;
         /* Reducing gap between on devices with lower resolution. */
+        gap: 1rem;
     }
 }
 
@@ -85,22 +88,22 @@ p {
 #navigointi {
     margin: calc(1rem + var(--between_margin)) 0rem;
 
+    /* Set buttons on sides of the screen. */
     display: flex;
     justify-content: space-between;
-    /* Buttons are set on sides. */
 }
 
 .nappi {
     font-size: 200%;
-    border-radius: var(--field_border_radius);
-    border-style: outset;
-    border-width: 0.25rem;
-    border-color: black;
+    background-color: white;
 
     margin: 0.75rem;
     padding: 1.5rem;
 
-    background-color: white;
+    border-radius: var(--field_border_radius);
+    border-style: outset;
+    border-width: 0.25rem;
+    border-color: black;
 }
 
 #contacts {
