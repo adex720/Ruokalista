@@ -25,7 +25,6 @@ function runAligment() {
     }
 
     document.getElementById('contact-filler').style.display = 'block';
-
 }
 
 /**

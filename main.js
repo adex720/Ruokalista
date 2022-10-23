@@ -215,7 +215,7 @@ function nameOfDay() {
  * Updates html elements to contain course names.
  */
 function update(meatCourse, vegetarianCourse) {
-    document.getElementById('otsikko').textContent = nameOfDay() + ' ruokalista:';
+    document.getElementById('otsikko').textContent = nameOfDay() + ' ruokalista';
     document.getElementById('ruoka_ka').textContent = vegetarianCourse;
 
     if (meatCourse != undefined) {
@@ -234,7 +234,7 @@ function update(meatCourse, vegetarianCourse) {
  */
 function noSchool() {
     // Updating date
-    document.getElementById('otsikko').textContent = nameOfDay() + ' ruokalista:';
+    document.getElementById('otsikko').textContent = nameOfDay() + ' ruokalista';
 
     // Creating element informing no school
     const title = document.createElement('h1');
