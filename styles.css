@@ -1,7 +1,6 @@
 :root {
     --field_border_radius: 2rem;
 
-
     --between_margin: 2rem;
 }
 
@@ -73,8 +72,11 @@ p {
 .nappi {
     font-size: 200%;
     border-radius: var(--field_border_radius);
+    border-style: outset;
+    border-width: 0.25rem;
+    border-color: black;
 
-    margin: 1rem;
+    margin: 0.75rem;
     padding: 1.5rem;
 
     background-color: white;
