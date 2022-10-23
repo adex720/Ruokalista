@@ -13,6 +13,7 @@
 body {
     background-color: skyblue;
     font-size: 150%;
+    font-family: 'Times New Roman', serif;
 }
 
 p {
@@ -34,7 +35,7 @@ p {
 
 .ateriatyyppi {
     margin: 0rem;
-    width: 200px;
+    width: 13rem;
     text-align: right;
 }
 
@@ -47,7 +48,13 @@ p {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1.5rem;
+    gap: 3rem;
+}
+
+@media (max-resolution: 1dppx) {
+    .ateria {
+        gap: 1rem;
+    }
 }
 
 .ruoka {
@@ -95,7 +102,6 @@ p {
 
 .contact-filler {
     display: none;
-    height: 100px;
     width: 16rem;
 }
 
