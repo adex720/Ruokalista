@@ -47,20 +47,20 @@ function getNewPage(delta) {
  * Requests a JSON file from an url and runs callback with response.
  */
 function getJSON(url, callback) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.responseType = 'json';
+    let request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.responseType = 'json';
 
-    xhr.onload = () => {
-        let status = xhr.status;
+    request.onload = () => {
+        let status = request.status;
         if (status == 200) {
-            callback(null, xhr.response);
+            callback(null, request.response);
         } else {
             callback(status);
         }
     };
 
-    xhr.send();
+    request.send();
 }
 
 /**
@@ -68,35 +68,36 @@ function getJSON(url, callback) {
  * Updates content of page to show menu of the day.
  */
 function createMenu() {
-    const response = getJSON('https://www.sodexo.fi/ruokalistat/output/weekly_json/84', (err, data) => {
-
+    getJSON('https://www.sodexo.fi/ruokalistat/output/weekly_json/84', (err, data) => {
         if (err != null) {
             console.error(err);
-        } else {
-            var menu = data.mealdates[getDayId()];
-
-            if (menu == undefined) {
-                // The restaurant isn't open
-                noSchool();
-                return;
-            }
-            var courses = menu.courses;
-
-            var meatCourse;
-            var vegetarianCourse;
-
-            if (courses[2] != undefined) {
-                // 2 courses
-                meatCourse = courses[1].title_fi;
-                vegetarianCourse = courses[2].title_fi;
-            } else {
-                // Only vegetarian course
-                meatCourse = undefined;
-                vegetarianCourse = courses[1].title_fi;
-            }
-
-            update(meatCourse, vegetarianCourse);
+            return;
         }
+
+        var menu = data.mealdates[getDayId()];
+
+        if (menu == undefined) {
+            // The restaurant isn't open
+            noSchool();
+            return;
+        }
+        var courses = menu.courses;
+
+        var meatCourse;
+        var vegetarianCourse;
+
+        if (courses[2] != undefined) {
+            // 2 courses
+            meatCourse = courses[1].title_fi;
+            vegetarianCourse = courses[2].title_fi;
+        } else {
+            // Only vegetarian course
+            meatCourse = undefined;
+            vegetarianCourse = courses[1].title_fi;
+        }
+
+        update(meatCourse, vegetarianCourse);
+
 
     });
 }

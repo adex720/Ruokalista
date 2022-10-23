@@ -31,7 +31,7 @@
 
 body {
     background-color: skyblue;
-    font-size: 150%;
+    font-size: 160%;
     font-family: 'Times New Roman', serif;
 }
 
@@ -69,13 +69,13 @@ p {
     align-items: center;
 
     /* Distance between course category and the course */
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 @media (not(max-resolution: 1dppx)) {
     .ateria {
         /* Increasing gap on devices with larger resolution. */
-        gap: 3rem;
+        gap: 3.25rem;
     }
 }
 
