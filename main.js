@@ -71,9 +71,9 @@ function getJSON(url, callback) {
  * Updates content of page to show menu of the day.
  */
 function createMenu() {
-    getJSON('https://www.sodexo.fi/ruokalistat/output/weekly_json/84', (err, data) => {
-        if (err != null) {
-            console.error(err);
+    getJSON('https://www.sodexo.fi/ruokalistat/output/weekly_json/84', (error, data) => {
+        if (error != null) {
+            console.error(error);
             return;
         }
 
@@ -81,6 +81,9 @@ function createMenu() {
 
         if (menu == undefined) {
             // The restaurant isn't open
+
+            // The restaurant is open during most holidays, but the menu will still be shown,
+            // becuase the website is telling the menu and not when there is school. 
             noSchool();
             return;
         }
@@ -100,8 +103,6 @@ function createMenu() {
         }
 
         update(meatCourse, vegetarianCourse);
-
-
     });
 }
 
