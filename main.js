@@ -4,26 +4,34 @@
 function initButtons() {
     document.getElementById('edellinen').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, -1); }, false);
     document.getElementById('seuraava').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, +1); }, false);
+    document.getElementById('tanaan').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, undefined); }, false);
 }
 
 /**
  * Loads new page when a movement button is pressed by the right mouse button.
  * The next page is the next day when movement is +1
  * and the last day when movement is -1.
+ * Returns to current day if movement is undefined.
  * 
  * @param {*} mouseButton Id of the mouse button
  * @param {*} movement Pages to move, positive or negative
  */
 function movementButtonPressed(mouseButton, movement) {
     if (mouseButton != 0) return; // Only moving on right click.
-    window.location.href = getNewPage(movement);
+
+    if (movement != undefined) {
+        window.location.href = getNewPageByDifference(movement)
+        return;
+    }
+    console.log(movement);
+    window.location.href = getNewPageByDayId(0);
 }
 
 /**
- * Refreshes the current page to a new date.
+ * Refreshes the current page to a new date by the difference of days.
  * Day difference is determined with url parameters
  */
-function getNewPage(delta) {
+function getNewPageByDifference(delta) {
     var current = window.location.href;
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -32,18 +40,36 @@ function getNewPage(delta) {
         // No url parameters exist
         return current + '?paiva=' + delta;
     }
+
+    var dayId;
     if (urlParams.has('paiva')) {
         // 'paiva' url parameter exists
-        var paiva = parseInt(urlParams.get('paiva')) + delta;
+        dayId = parseInt(urlParams.get('paiva')) + delta;
 
-        if (paiva >= 7) paiva = paiva % 7;
-        while (paiva < 0) paiva += 7;
+        if (dayId >= 7) dayId = dayId % 7;
+        while (dayId < 0) dayId += 7;
+    } else {
+        dayId = delta;
+    }
 
-        urlParams.set('paiva', paiva);
+    return getNewPageByDayId(dayId);
+}
+
+/**
+ * Refreshes the current page to a new date by day id.
+ * Day id is determined with url parameters
+ */
+function getNewPageByDayId(dayId) {
+    var current = window.location.href;
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if (urlParams.has('paiva')) {
+        urlParams.set('paiva', dayId);
         return window.location.pathname + '?' + urlParams.toString();
     }
     // Other url parameters exist
-    return current + '&paiva=' + delta;
+    return current + '&paiva=' + dayId;
 }
 
 /**
@@ -77,6 +103,7 @@ function createMenu() {
             return;
         }
 
+        // Getting many of the correct day
         var menu = data.mealdates[getDayId()];
 
         if (menu == undefined) {
@@ -117,7 +144,15 @@ function getDate() {
 }
 
 /**
- * Returs id of the current week day.
+ * Returs id of the week day today is.
+ * Monday=0, Tuesday=1, ... Saturday=5, Sunday=-1
+ */
+function getTodayDayId() {
+    return new Date().getDay() - 1;
+}
+
+/**
+ * Returs id of the week day on the page.
  * Monday=0, Tuesday=1, ... Saturday=5, Sunday=-1
  */
 function getDayId() {
@@ -125,7 +160,7 @@ function getDayId() {
 }
 
 /**
- * Returns the name of the current day and date on Finnish
+ * Returns the name of the day and date on the page on Finnish
  */
 function nameOfDay() {
     var date = getDate();
@@ -160,7 +195,8 @@ function update(meatCourse, vegetarianCourse) {
         return;
     }
 
-    document.getElementById('seka').style.display = 'none'; // Hide meal course elements if only vegetarian course is served.
+    // Hide meal course elements if only vegetarian course is served.
+    document.getElementById('seka').style.display = 'none';
 }
 
 /**
@@ -199,7 +235,7 @@ function calculateDayDifference() {
     else difference = 7 + day;
 
     // Moving selected date to the same week as the current day is while remaining day of the week
-    var tanaanPaivaId = new Date().getDay() - 1;
+    var tanaanPaivaId = getTodayDayId();
     if (tanaanPaivaId == -1) tanaanPaivaId = 6;
 
     var uusiPaivaId = tanaanPaivaId + difference;
