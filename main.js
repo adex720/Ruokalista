@@ -160,7 +160,7 @@ function update(meatCourse, vegetarianCourse) {
         return;
     }
 
-    document.getElementById('seka').style.display = 'none'; // Hide meal course elements if only vegetarian course is server.
+    document.getElementById('seka').style.display = 'none'; // Hide meal course elements if only vegetarian course is served.
 }
 
 /**
