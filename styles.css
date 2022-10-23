@@ -57,7 +57,7 @@ p {
     align-items: center;
 
     /* Distance between course category and the course */
-    gap: 1.25rem; /* 1.25 */
+    gap: 2rem;
 }
 
 .ruoka {
