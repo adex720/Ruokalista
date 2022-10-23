@@ -6,20 +6,26 @@
     --between_margin: 2rem;
 
     /* size multiplier of contact icons*/
-    --contact-size-multiplier: 1.5;
+    --contact-size-multiplier: 1;
 }
 
-@media screen and (max-height: 685px) {
+@media (not(max-resolution: 1dppx)) {
+    :root {
+        /* Increase the size of contact icons if the screen has high resolution. */
+        --contact-size-multiplier: 1.5;
+    }
+}
+
+@media screen and (max-height: 685px) and (max-resolution: 1dppx) {
     :root {
         /* Reduces gap between courses when screen height is small. */
         --between_margin: 1rem;
     }
 }
 
-@media (max-resolution: 1dppx) {
+@media screen and (max-height: 735px) and (not (max-resolution: 1dppx)) {
     :root {
-        /* Cancels increase on the size of contact icons if the screen has low resolution. */
-        --contact-size-multiplier: 1;
+        --between_margin: 1rem;
     }
 }
 
@@ -63,13 +69,13 @@ p {
     align-items: center;
 
     /* Distance between course category and the course */
-    gap: 3rem;
+    gap: 1rem;
 }
 
-@media (max-resolution: 1dppx) {
+@media (not(max-resolution: 1dppx)) {
     .ateria {
-        /* Reducing gap between on devices with lower resolution. */
-        gap: 1rem;
+        /* Increasing gap on devices with larger resolution. */
+        gap: 3rem;
     }
 }
 
@@ -124,7 +130,20 @@ p {
     width: 16rem;
 }
 
-@media screen and (max-height: 585px) {
+@media (not(max-resolution: 1dppx)) {
+    .contact-filler {
+        width: 18rem;
+    }
+}
+
+@media screen and (max-height: 590px) and (max-resolution: 1dppx) {
+    .contact-filler {
+        /* displaying the contact filler if screen height is small enough. */
+        display: block;
+    }
+}
+
+@media screen and (max-height: 635px) and (not (max-resolution: 1dppx)) {
     .contact-filler {
         /* displaying the contact filler if screen height is small enough. */
         display: block;
