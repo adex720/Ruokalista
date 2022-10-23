@@ -26,8 +26,6 @@ function runAligment() {
 
     document.getElementById('contact-filler').style.display = 'block';
 
-    // TODO: add contacts to navbar when even smaller screen
-
 }
 
 /**
