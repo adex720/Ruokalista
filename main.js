@@ -1,6 +1,19 @@
 function initButtons() {
-    document.getElementById('edellinen').addEventListener('mouseup', (event) => { if (event.button == 0) window.location.href = getNewPage(-1); }, false)
-    document.getElementById('seuraava').addEventListener('mouseup', () => { if (event.button == 0) window.location.href = getNewPage(+1); }, false)
+    document.getElementById('edellinen').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, -1); }, false)
+    document.getElementById('seuraava').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, +1); }, false)
+}
+
+/**
+ * Loads new page when a movement button is pressed by the right mouse button.
+ * The next page is the next day when movement is +1
+ * and the last day when movement is -1.
+ * 
+ * @param {*} mouseButton Id of the mouse button
+ * @param {*} movement Pages to move, positive or negative
+ */
+function movementButtonPressed(mouseButton, movement) {
+    if (mouseButton != 0) return; // Only moving on right click.
+    window.location.href = getNewPage(movement);
 }
 
 /**
