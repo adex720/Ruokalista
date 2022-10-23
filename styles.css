@@ -16,19 +16,6 @@
     }
 }
 
-@media screen and (max-height: 685px) and (max-resolution: 1dppx) {
-    :root {
-        /* Reduces gap between courses when screen height is small. */
-        --between_margin: 1rem;
-    }
-}
-
-@media screen and (max-height: 735px) and (not (max-resolution: 1dppx)) {
-    :root {
-        --between_margin: 1rem;
-    }
-}
-
 body {
     background-color: skyblue;
     font-size: 160%;
@@ -113,7 +100,7 @@ p {
 }
 
 #contacts {
-    margin: 0.75rem 0.5rem;
+    margin: 0rem 0.5rem 0.75rem 0.5rem;
 
     position: fixed;
     bottom: 0;
@@ -133,20 +120,6 @@ p {
 @media (not(max-resolution: 1dppx)) {
     .contact-filler {
         width: 18rem;
-    }
-}
-
-@media screen and (max-height: 590px) and (max-resolution: 1dppx) {
-    .contact-filler {
-        /* displaying the contact filler if screen height is small enough. */
-        display: block;
-    }
-}
-
-@media screen and (max-height: 635px) and (not (max-resolution: 1dppx)) {
-    .contact-filler {
-        /* displaying the contact filler if screen height is small enough. */
-        display: block;
     }
 }
 

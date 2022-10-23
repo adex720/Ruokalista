@@ -1,12 +1,19 @@
 /**
+ * Registers all event listeners expect key and mouse listeners.
+ */
+function registerEventListeners() {
+    addEventListener('resize', () => runAligment());
+}
+
+/**
  * Adds mouse event listeners to movement buttons.
  */
 function initButtons() {
     hideUnneccessaryButtons();
 
-    document.getElementById('edellinen').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, -1); }, false);
-    document.getElementById('seuraava').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, +1); }, false);
-    document.getElementById('tanaan').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, undefined); }, false);
+    document.getElementById('edellinen').addEventListener('mouseup', e => movementButtonPressed(e.button, -1), false);
+    document.getElementById('seuraava').addEventListener('mouseup', e => movementButtonPressed(e.button, +1), false);
+    document.getElementById('tanaan').addEventListener('mouseup', e => movementButtonPressed(e.button, undefined), false);
 }
 
 /**
@@ -212,12 +219,14 @@ function update(meatCourse, vegetarianCourse) {
     document.getElementById('ruoka_ka').textContent = vegetarianCourse;
 
     if (meatCourse != undefined) {
+        // Set meat course name if it's server
         document.getElementById('ruoka_sr').textContent = meatCourse;
-        return;
+    } else {
+        // Hide meat course elements if only vegetarian course is served.
+        document.getElementById('seka').style.display = 'none';
     }
 
-    // Hide meal course elements if only vegetarian course is served.
-    document.getElementById('seka').style.display = 'none';
+    runAligment();
 }
 
 /**
@@ -267,6 +276,8 @@ function calculateDayDifference() {
 }
 
 var dayDiference = calculateDayDifference();
+
+registerEventListeners();
 
 initButtons();
 createMenu();
