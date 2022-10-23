@@ -42,6 +42,8 @@ p {
 .ateriatyyppi {
     margin: 0rem;
     text-align: right;
+
+    flex-shrink: 0;
 }
 
 .ateria {

@@ -9,7 +9,7 @@
  */
 function fixDimensions() {
     var width = getElementWidth('otsikko_ka');
-    document.getElementById('otsikko_sr').setAttribute('style', 'width:' + width + 'px');
+    document.getElementById('otsikko_sr').setAttribute('style', 'flex-basis:' + width + 'px');
 }
 
 /**
