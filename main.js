@@ -158,6 +158,7 @@ function createMenu() {
         }
 
         update(meatCourse, vegetarianCourse);
+
     });
 }
 
@@ -274,6 +275,8 @@ function calculateDayDifference() {
     if (uusiPaivaId < tanaanPaivaId) difference -= 7;
     return difference;
 }
+
+fixDimensions();
 
 var dayDiference = calculateDayDifference();
 

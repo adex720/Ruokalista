@@ -41,7 +41,6 @@ p {
 
 .ateriatyyppi {
     margin: 0rem;
-    width: 13rem;
     text-align: right;
 }
 
@@ -56,14 +55,7 @@ p {
     align-items: center;
 
     /* Distance between course category and the course */
-    gap: 1.25rem;
-}
-
-@media (not(max-resolution: 1dppx)) {
-    .ateria {
-        /* Increasing gap on devices with larger resolution. */
-        gap: 3.25rem;
-    }
+    gap: 1.25rem; /* 1.25 */
 }
 
 .ruoka {

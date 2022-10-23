@@ -5,6 +5,14 @@
 
 
 /**
+ * Fixes element dimesnions which are based on other elements.
+ */
+function fixDimensions() {
+    var width = getElementWidth('otsikko_ka');
+    document.getElementById('otsikko_sr').setAttribute('style', 'width:' + width + 'px');
+}
+
+/**
  * Reduces page height by reducing marginals and moving contact icons if the screen height is small.
  */
 function runAligment() {
@@ -120,4 +128,25 @@ function getElementHeightWithMargin(id) {
     var element = document.getElementById(id);
     var bounding = element.getBoundingClientRect();
     return bounding.bottom - bounding.top + element.style.marginTop + element.style.marginBottom;
+}
+
+/**
+ * Returns the width of the element.
+ * 
+ * @param {*} id  Id of the element
+ */
+function getElementWidth(id) {
+    var bounding = getElementBounding(id);
+    return bounding.right - bounding.left;
+}
+
+/**
+ * Returns the width of the element with margins.
+ * 
+ * @param {*} id  Id of the element
+ */
+function getElementWidthWithMargin(id) {
+    var element = document.getElementById(id);
+    var bounding = element.getBoundingClientRect();
+    return bounding.right - bounding.left + element.style.marginLeft + element.style.marginRight;
 }
