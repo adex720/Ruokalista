@@ -2,9 +2,30 @@
  * Adds mouse event listeners to movement buttons.
  */
 function initButtons() {
+    hideUnneccessaryButtons();
+
     document.getElementById('edellinen').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, -1); }, false);
     document.getElementById('seuraava').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, +1); }, false);
     document.getElementById('tanaan').addEventListener('mouseup', (event) => { movementButtonPressed(event.button, undefined); }, false);
+}
+
+/**
+ * Checks if buttons which are not always visible should be visible and hides them if not.
+ */
+function hideUnneccessaryButtons() {
+    if (shouldHideTodayButton()) {
+        document.getElementById('tanaan').style.display = 'none';
+    }
+}
+
+/**
+ * Returns true if te button to load current page should be hidden.
+ */
+function shouldHideTodayButton() {
+    if (dayDiference % 7 == 0) return true; // Already viewing current day.
+
+    var todayDayId = getTodayDayId();
+    return todayDayId == 6 || todayDayId == -1; // Current day is Saturday or Sunday
 }
 
 /**
