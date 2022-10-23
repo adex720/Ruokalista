@@ -1,8 +1,37 @@
 /**
+ * Runs everything that should be run before asking menu from server
+ */
+function init() {
+    calculateCssVariables();
+    fixDimensions();
+}
+
+/**
+ * Calculates values for variables on a stylesheet where the value can't easily be set without the help of javasript.
+ */
+function calculateCssVariables() {
+    console.log(window.devicePixelRatio * document.body.clientWidth / 2544);
+    editCssVariable('--contact-size-multiplier', window.devicePixelRatio * document.body.clientWidth / 2544 * 1.1  + 0.12);
+}
+
+/**
+ * Edits a variable used on a stylesheet.
+ * 
+ * @param {*} variable Name of the variable
+ * @param {*} value New value
+ */
+function editCssVariable(variable, value) {
+    document.querySelector(':root').style.setProperty(variable, value);
+}
+
+/**
  * Registers all event listeners expect key and mouse listeners.
  */
 function registerEventListeners() {
-    addEventListener('resize', () => runAligment());
+    addEventListener('resize', () => {
+        calculateCssVariables();
+        runAligment()
+    });
 }
 
 /**
@@ -276,7 +305,7 @@ function calculateDayDifference() {
     return difference;
 }
 
-fixDimensions();
+init();
 
 var dayDiference = calculateDayDifference();
 

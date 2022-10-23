@@ -9,12 +9,12 @@
     --contact-size-multiplier: 1;
 }
 
-@media (not(max-resolution: 1dppx)) {
+/*@media (not(max-resolution: 1dppx)) {
     :root {
-        /* Increase the size of contact icons if the screen has high resolution. */
+        /* Increase the size of contact icons if the screen has high resolution. *//*
         --contact-size-multiplier: 1.5;
     }
-}
+}*/
 
 body {
     background-color: skyblue;
@@ -108,18 +108,11 @@ p {
     /* Moves contact buttons to left so they don't overlap with the 'seuraava'-button. 
        The filler is not displayed by default. */
     display: none;
-    width: 16rem;
-}
-
-@media (not(max-resolution: 1dppx)) {
-    .contact-filler {
-        width: 18rem;
-    }
 }
 
 .contact {
     /* Multiplying contact icon size by the size multiplier. */
-    margin: 0rem calc(0.5rem * var(--contact-size-multiplier));
+    margin: 0rem calc(2rem * var(--contact-size-multiplier)) 0rem 0rem;
 
     border-radius: calc(3rem * var(--contact-size-multiplier));
     width: calc(6rem * var(--contact-size-multiplier));

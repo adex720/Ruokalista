@@ -10,6 +10,9 @@
 function fixDimensions() {
     var width = getElementWidth('otsikko_ka');
     document.getElementById('otsikko_sr').setAttribute('style', 'flex-basis:' + width + 'px');
+
+    width = getElementWidthWithSurroundings('seuraava');
+    document.getElementById('contact-filler').setAttribute('style', 'width:' + width + 'px');
 }
 
 /**
@@ -52,16 +55,6 @@ function shouldRealign(min) {
     var contactsStart = getElementY('contacts');
     var contentEnd = getElementBottomY('navigointi');
     return contactsStart - contentEnd < min;
-}
-
-/**
- * Edits a variable used on a stylesheet.
- * 
- * @param {*} variable Name of the variable
- * @param {*} value New value
- */
-function editCssVariable(variable, value) {
-    document.querySelector(':root').style.setProperty(variable, value);
 }
 
 /**
@@ -120,14 +113,14 @@ function getElementHeight(id) {
 }
 
 /**
- * Returns the height of the element with margins.
+ * Returns the height of the element with margin and padding.
  * 
  * @param {*} id  Id of the element
  */
-function getElementHeightWithMargin(id) {
+function getElementHeightWithSurroundings(id) {
     var element = document.getElementById(id);
     var bounding = element.getBoundingClientRect();
-    return bounding.bottom - bounding.top + element.style.marginTop + element.style.marginBottom;
+    return bounding.bottom - bounding.top + element.style.marginTop + element.style.marginBottom + element.style.paddingTop + element.style.paddingBottom;
 }
 
 /**
@@ -141,12 +134,12 @@ function getElementWidth(id) {
 }
 
 /**
- * Returns the width of the element with margins.
+ * Returns the width of the element with margin and padding.
  * 
  * @param {*} id  Id of the element
  */
-function getElementWidthWithMargin(id) {
+function getElementWidthWithSurroundings(id) {
     var element = document.getElementById(id);
     var bounding = element.getBoundingClientRect();
-    return bounding.right - bounding.left + element.style.marginLeft + element.style.marginRight;
+    return bounding.right - bounding.left + element.style.marginLeft + element.style.marginRight + element.style.paddingLeft + element.style.paddingRight;
 }
