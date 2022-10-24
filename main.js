@@ -61,7 +61,7 @@ function hideUnneccessaryButtons() {
  * Returns true if te button to load current page should be hidden.
  */
 function shouldHideTodayButton() {
-    if (dayDiference % 7 == 0) return true; // Already viewing current day.
+    if (calculateDayDifference() % 7 == 0) return true; // Already viewing current day.
 
     var todayDayId = getTodayDayId();
     return todayDayId == 6 || todayDayId == -1; // Current day is Saturday or Sunday
