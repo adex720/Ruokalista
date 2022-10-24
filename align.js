@@ -35,13 +35,7 @@ function runAligment() {
         return;
     }
 
-
-    if (!shouldMoveContacts()) {
-        document.getElementById('contact-filler').style.display = 'block';
-        return;
-    }
-
-    moveContactsToNavbar();
+    handleContactPosition();
 }
 
 /**
@@ -50,7 +44,7 @@ function runAligment() {
 function resetRealigment() {
     editCssVariable('--between_margin', '2rem');
     document.getElementById('contact-filler').style.display = 'none';
-    moveContactsToBottom();
+    moveContactsToBottom(true);
 }
 
 /**
@@ -65,6 +59,38 @@ function shouldRealign(min) {
 }
 
 /**
+ * Calculates and moves contact to correct position based on screen size.
+ */
+function handleContactPosition() {
+    if (!isRoomForContacts()) {
+        moveContactsToBottom(false);
+        return;
+    }
+
+    if (shouldMoveContacts()) {
+        moveContactsToNavbar();
+        return;
+    }
+
+    if (shouldDisplayContactFiller()) {
+        document.getElementById('contact-filler').style.display = 'block';
+        return;
+    }
+
+    moveContactsToBottom(true);
+    return;
+}
+
+/**
+ * Returns true if contact-filler should be shown puhing contacts left by the width of 'seuraava'-button.
+ */
+function shouldDisplayContactFiller() {
+    var contactsStart = getElementY('contacts');
+    var buttonEnd = getElementBottomY('edellinen');
+    return contactsStart < buttonEnd;
+}
+
+/**
  * Returns true if the contact icons should be relocated to navbar.
  * This is the case when otherwise the icons would be at least partly above the navbar.
  */
@@ -75,16 +101,35 @@ function shouldMoveContacts() {
 }
 
 /**
- * Moves the contacts to the bottom of the page
+ * Returns true if there is enough room to fit all contacts between movement buttons.
  */
-function moveContactsToBottom() {
+function isRoomForContacts() {
+    var maxX = getElementX('seuraava');
+    var buttonId = shouldHideTodayButton() ? 'edellinen' : 'tanaan';
+    var minX = getElementRightX(buttonId);
+
+    var contactsWidth = getElementWidthWithSurroundings('contacts');
+
+    return maxX - minX > contactsWidth;
+}
+
+/**
+ * Moves the contacts to the bottom of the page.
+ * 
+ * @param {boolean} toBottom If true, contacts will be moved the bottom of screen.
+ *                           If false, contacts will be moved below movement buttons.
+ */
+function moveContactsToBottom(toBottom) {
     var contacts = document.getElementById('contacts');
     var parent = contacts.parentElement;
 
+    var placeholder = document.getElementById('cf-placeholder-bottom');
+
+    var position = toBottom ? 'absolute' : 'relative';
+    placeholder.style.position = position;
+
     if (parent.id !== 'cf-placeholder-bottom') {
         parent.removeChild(contacts);
-
-        var placeholder = document.getElementById('cf-placeholder-bottom');
         placeholder.appendChild(contacts);
 
         var navbarPlaceholder = document.getElementById('cf-placeholder-navbar');
