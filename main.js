@@ -79,7 +79,6 @@ function movementButtonPressed(mouseButton, movement) {
         window.location.href = getNewPageByDifference(movement)
         return;
     }
-    console.log(movement);
     window.location.href = getNewPageByDayId(0);
 }
 
