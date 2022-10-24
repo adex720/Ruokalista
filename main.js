@@ -273,6 +273,8 @@ function noSchool() {
     // Removing course elements
     document.getElementById('seka').style.display = 'none';
     document.getElementById('kasvis').style.display = 'none';
+    
+    runAligment();
 }
 
 function calculateDayDifference() {

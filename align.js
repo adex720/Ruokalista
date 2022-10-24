@@ -20,9 +20,8 @@ function fixDimensions() {
  */
 function runAligment() {
     resetRealigment();
-    // All values are in pixels.
 
-    // Realigment will be run if the space between 'seuraava'-button and contact icons is less than this value.
+    // Realigment will be run if the space between 'seuraava'-button and contact icons is less than this value (px).
     var minSpaceBetweenButtonsAndContacts = 5;
 
     if (!shouldRealign(minSpaceBetweenButtonsAndContacts)) {
@@ -55,6 +54,7 @@ function resetRealigment() {
 function shouldRealign(min) {
     var contactsStart = getElementY('contacts');
     var contentEnd = getElementBottomY('navigointi');
+    console.log(contactsStart, contentEnd);
     return contactsStart - contentEnd < min;
 }
 
