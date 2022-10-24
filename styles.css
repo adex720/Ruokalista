@@ -1,6 +1,6 @@
 :root {
     /* size of curved corners */
-    --field_border_radius: 2rem;
+    --field_border_radius: 2.5rem;
 
     /* vertical margin between title, courses and buttons*/
     --between_margin: 2rem;
@@ -8,13 +8,6 @@
     /* size multiplier of contact icons*/
     --contact-size-multiplier: 1;
 }
-
-/*@media (not(max-resolution: 1dppx)) {
-    :root {
-        /* Increase the size of contact icons if the screen has high resolution. *//*
-        --contact-size-multiplier: 1.5;
-    }
-}*/
 
 body {
     background-color: skyblue;
