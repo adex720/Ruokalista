@@ -77,7 +77,6 @@ function handleContactPosition() {
     }
 
     moveContactsToBottom(true);
-    return;
 }
 
 /**
