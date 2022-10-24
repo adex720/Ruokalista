@@ -4,6 +4,8 @@
 function init() {
     calculateCssVariables();
     fixDimensions();
+
+    registerEventListeners();
 }
 
 /**
@@ -24,9 +26,11 @@ function editCssVariable(variable, value) {
 }
 
 /**
- * Registers all event listeners expect key and mouse listeners.
+ * Registers all event listeners.
  */
 function registerEventListeners() {
+    initButtons();
+
     addEventListener('resize', () => {
         calculateCssVariables();
         runAligment()
@@ -308,8 +312,4 @@ function calculateDayDifference() {
 init();
 
 var dayDiference = calculateDayDifference();
-
-registerEventListeners();
-
-initButtons();
 createMenu();
