@@ -10,7 +10,6 @@ function init() {
  * Calculates values for variables on a stylesheet where the value can't easily be set without the help of javasript.
  */
 function calculateCssVariables() {
-    console.log(window.devicePixelRatio * document.body.clientWidth / 2544);
     editCssVariable('--contact-size-multiplier', window.devicePixelRatio * document.body.clientWidth / 2544 * 1.1  + 0.12);
 }
 

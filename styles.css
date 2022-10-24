@@ -86,12 +86,23 @@ p {
     border-color: black;
 }
 
-#contacts {
-    margin: 0rem 0.5rem 0.75rem 0.5rem;
+.cf-placeholder {
+    display: block;
+}
 
+#cf-placeholder-navbar {
+    position: absolute;
+    align-self: flex-end;
+}
+
+#cf-placeholder-bottom {
     position: fixed;
     bottom: 0;
     right: 0;
+}
+
+#contacts {
+    margin: 0rem 0.5rem 0.75rem 0.5rem;
 
     display: flex;
     flex-direction: row-reverse;

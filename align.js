@@ -35,7 +35,13 @@ function runAligment() {
         return;
     }
 
-    document.getElementById('contact-filler').style.display = 'block';
+
+    if (!shouldMoveContacts()) {
+        document.getElementById('contact-filler').style.display = 'block';
+        return;
+    }
+
+    moveContactsToNavbar();
 }
 
 /**
@@ -44,6 +50,7 @@ function runAligment() {
 function resetRealigment() {
     editCssVariable('--between_margin', '2rem');
     document.getElementById('contact-filler').style.display = 'none';
+    moveContactsToBottom();
 }
 
 /**
@@ -55,6 +62,54 @@ function shouldRealign(min) {
     var contactsStart = getElementY('contacts');
     var contentEnd = getElementBottomY('navigointi');
     return contactsStart - contentEnd < min;
+}
+
+/**
+ * Returns true if the contact icons should be relocated to navbar.
+ * This is the case when otherwise the icons would be at least partly above the navbar.
+ */
+function shouldMoveContacts() {
+    var contactsEnd = getElementBottomY('contacts');
+    var buttonEnd = getElementBottomY('edellinen');
+    return contactsEnd < buttonEnd;
+}
+
+/**
+ * Moves the contacts to the bottom of the page
+ */
+function moveContactsToBottom() {
+    var contacts = document.getElementById('contacts');
+    var parent = contacts.parentElement;
+
+    if (parent.id !== 'cf-placeholder-bottom') {
+        parent.removeChild(contacts);
+
+        var placeholder = document.getElementById('cf-placeholder-bottom');
+        placeholder.appendChild(contacts);
+
+        var navbarPlaceholder = document.getElementById('cf-placeholder-navbar');
+        navbarPlaceholder.style.position = 'absolute';
+    }
+}
+
+/**
+ * Moves the contacts to the navbar
+ */
+function moveContactsToNavbar() {
+    document.getElementById('contact-filler').style.display = 'none';
+
+    var contacts = document.getElementById('contacts');
+    var parent = contacts.parentElement;
+
+    if (parent.id !== 'cf-placeholder-navbar') {
+        parent.removeChild(contacts);
+
+        var placeholder = document.getElementById('cf-placeholder-navbar');
+        placeholder.appendChild(contacts);
+
+        placeholder.style.position = 'relative';
+    }
+
 }
 
 /**
