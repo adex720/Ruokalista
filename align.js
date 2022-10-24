@@ -54,7 +54,6 @@ function resetRealigment() {
 function shouldRealign(min) {
     var contactsStart = getElementY('contacts');
     var contentEnd = getElementBottomY('navigointi');
-    console.log(contactsStart, contentEnd);
     return contactsStart - contentEnd < min;
 }
 
