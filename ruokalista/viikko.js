@@ -97,9 +97,35 @@ function finnishNameOfDayShort(dayId) {
 }
 
 /**
+ * Makes all course title elemnts have equal width.
+ */
+function fixAligment() {
+     // Titles always exists because this method is called before making web request.
+    var element = document.getElementById('otsikko_ka_ma');
+    var width = element.getBoundingClientRect().width;
+
+    var titles = document.getElementsByClassName('widthfix');
+    for (var i = 0; i < titles.length; i++) {
+        titles[i].setAttribute('style', 'flex-basis:' + width + 'px');
+    }
+}
+
+/**
+ * Edits a variable used on a stylesheet.
+ * 
+ * @param {*} variable Name of the variable
+ * @param {*} value New value
+ */
+function editCssVariable(variable, value) {
+    document.querySelector(':root').style.setProperty(variable, value);
+}
+
+/**
  * Called when page is loaded.
  */
 function main() {
+    fixAligment();
+
     getCourses(loadCourses);
 
 }

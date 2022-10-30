@@ -82,8 +82,6 @@ function getCourses(update) {
         for (var i = 0; i < 5; i++) {
             var menu = menus[i];
 
-            console.log(menu);
-
             if (menu == undefined) {
                 // Closed this day
                 courses[i] = undefined;
