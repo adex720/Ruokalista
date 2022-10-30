@@ -30,6 +30,7 @@ function getCourse(dayId, whenClosed, update) {
     getJSON('https://www.sodexo.fi/ruokalistat/output/weekly_json/84', (error, data) => {
         if (error != null) {
             console.error(error);
+            //TODO: say someting to user
             return;
         }
 
@@ -60,6 +61,55 @@ function getCourse(dayId, whenClosed, update) {
         }
 
         update(meatCourse, vegetarianCourse);
+    });
+}
 
+/**
+ * Returns courses of the week as a 2d-array.
+ * Calls update with all the courses.
+ */
+function getCourses(update) {
+    getJSON('https://www.sodexo.fi/ruokalistat/output/weekly_json/84', (error, data) => {
+        if (error != null) {
+            console.error(error);
+            return;
+        }
+
+        var menus = data.mealdates;
+        var courses = []; // names
+
+        // Looping Mon-Fri
+        for (var i = 0; i < 5; i++) {
+            var menu = menus[dayId];
+
+            if (menu == undefined) {
+                // Closed this day
+                courses[i] = undefined;
+                continue;
+            }
+
+            // Courses of the day as json
+            var courses = menu.courses;
+
+            // Courses of the day as strings
+            var meatCourse;
+            var vegetarianCourse;
+
+            // Add correct valuese
+            if (courses[2] != undefined) {
+                // 2 courses
+                meatCourse = courses[1].title_fi;
+                vegetarianCourse = courses[2].title_fi;
+            } else {
+                // Only vegetarian course
+                meatCourse = undefined;
+                vegetarianCourse = courses[1].title_fi;
+            }
+
+            // Add courses to array
+            courses[i] = [meatCourse, vegetarianCourse];
+        }
+
+        update(courses);
     });
 }
