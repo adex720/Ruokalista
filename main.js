@@ -12,7 +12,7 @@ function init() {
  * Calculates values for variables on a stylesheet where the value can't easily be set without the help of javasript.
  */
 function calculateCssVariables() {
-    editCssVariable('--contact-size-multiplier', window.devicePixelRatio * document.body.clientWidth / 2544 * 1.1  + 0.12);
+    editCssVariable('--contact-size-multiplier', window.devicePixelRatio * document.body.clientWidth / 2544 * 1.1 + 0.12);
 }
 
 /**
@@ -223,7 +223,7 @@ function noSchool() {
     // Removing course elements
     document.getElementById('seka').style.display = 'none';
     document.getElementById('kasvis').style.display = 'none';
-    
+
     runAligment();
 }
 

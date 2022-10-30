@@ -80,7 +80,9 @@ function getCourses(update) {
 
         // Looping Mon-Fri
         for (var i = 0; i < 5; i++) {
-            var menu = menus[dayId];
+            var menu = menus[i];
+
+            console.log(menu);
 
             if (menu == undefined) {
                 // Closed this day
@@ -89,21 +91,21 @@ function getCourses(update) {
             }
 
             // Courses of the day as json
-            var courses = menu.courses;
+            var coursesJson = menu.courses;
 
             // Courses of the day as strings
             var meatCourse;
             var vegetarianCourse;
 
             // Add correct valuese
-            if (courses[2] != undefined) {
+            if (coursesJson[2] != undefined) {
                 // 2 courses
-                meatCourse = courses[1].title_fi;
-                vegetarianCourse = courses[2].title_fi;
+                meatCourse = coursesJson[1].title_fi;
+                vegetarianCourse = coursesJson[2].title_fi;
             } else {
                 // Only vegetarian course
                 meatCourse = undefined;
-                vegetarianCourse = courses[1].title_fi;
+                vegetarianCourse = coursesJson[1].title_fi;
             }
 
             // Add courses to array
