@@ -57,11 +57,11 @@ p {
     margin: 1.5rem 0rem;
 }
 
-#seka {
+.seka {
     background-color: lightcoral;
 }
 
-#kasvis {
+.kasvis {
     background-color: lightgreen;
 }
 
