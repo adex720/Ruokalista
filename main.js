@@ -6,6 +6,8 @@ function init() {
     fixDimensions();
 
     registerEventListeners();
+
+    runAligment();
 }
 
 /**
