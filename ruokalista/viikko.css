@@ -12,3 +12,9 @@
 .kasvis {
     margin-bottom: 6.5rem;
 }
+/*
+.widthfix {
+    flex-basis: var(--title-width) !important;
+
+    flex-shrink: 0;
+}*/
