@@ -7,17 +7,26 @@
 
     /* size multiplier of contact icons*/
     --contact-size-multiplier: 1;
+
+    /* color variables */
+    --background-color: skyblue;
+    --element-color: white;
+    --sekaruoka-vari: lightcoral;
+    --kasvisruoka-vari: lightgreen;
 }
 
 body {
-    background-color: skyblue;
+    background-color: var(--background-color);
     font-size: 160%;
     font-family: 'Times New Roman', serif;
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #666666;
+    :root {
+        --background-color: #666666;
+        --element-color: #bbbbbb;
+        --sekaruoka-vari: crimson;
+        --kasvisruoka-vari: darkgreen;
     }
 }
 
@@ -35,13 +44,7 @@ p {
     margin: var(--between_margin) 1rem;
     padding: 1rem 1.5rem;
 
-    background-color: white;
-}
-
-@media (prefers-color-scheme: dark) {
-    .info {
-        background-color: #cccccc;
-    }
+    background-color: var(--element-color);
 }
 
 .ateriatyyppi {
@@ -70,23 +73,11 @@ p {
 }
 
 .seka {
-    background-color: lightcoral;
+    background-color: var(--sekaruoka-vari);
 }
 
 .kasvis {
-    background-color: lightgreen;
-}
-
-@media(prefers-color-scheme: dark) {
-    .seka {
-        background-color: crimson;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    .kasvis {
-        background-color: darkgreen;
-    }
+    background-color: var(--kasvisruoka-vari);
 }
 
 #navigointi {
@@ -99,7 +90,7 @@ p {
 
 .nappi {
     font-size: 200%;
-    background-color: white;
+    background-color: var(--element-color);
 
     margin: 0.75rem;
     padding: 1.5rem;
@@ -108,13 +99,6 @@ p {
     border-style: outset;
     border-width: 0.25rem;
     border-color: black;
-}
-
-@media (prefers-color-scheme: dark) {
-    .nappi {
-        background-color: #bbbbbb;
-        border-color: black;
-    }
 }
 
 .cf-placeholder {

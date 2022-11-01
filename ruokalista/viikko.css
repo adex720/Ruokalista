@@ -4,13 +4,7 @@
     margin: 2rem 1rem;
     padding: 1rem 1.5rem;
 
-    background-color: white;
-}
-
-@media (prefers-color-scheme: dark) {
-    .otsikko {
-        background-color: #cccccc;
-    }
+    background-color: var(--element-color)
 }
 
 #ruokalista {
