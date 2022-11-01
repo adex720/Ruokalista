@@ -1,6 +1,4 @@
 .otsikko {
-   /* font-size: 150%;*/
-
     border-radius: var(--field_border_radius);
 
     margin: 2rem 1rem;
@@ -9,12 +7,9 @@
     background-color: white;
 }
 
-.kasvis {
-    margin-bottom: 6.5rem;
-}
-/*
-.widthfix {
-    flex-basis: var(--title-width) !important;
+#ruokalista {
+    display: flex;
+    flex-direction: column;
 
-    flex-shrink: 0;
-}*/
+    gap: 4rem;
+}

@@ -1,3 +1,7 @@
+function initButtons() {
+    document.getElementById('edellinen').addEventListener('onclick', () => window.location.pathname += '../');
+}
+
 /**
  * Reads courses of the week from an array and dispalys them on the page.
  * 
@@ -124,6 +128,7 @@ function editCssVariable(variable, value) {
  * Called when page is loaded.
  */
 function main() {
+    initButtons();
     fixAligment();
 
     getCourses(loadCourses);
