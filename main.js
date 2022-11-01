@@ -229,6 +229,20 @@ function noSchool() {
     runAligment();
 }
 
+/**
+ * Hides course elements and displays a message to the user.
+ */
+function displayErrorMessage(message) {
+    // Displaying error
+    var field = document.getElementById('virhekentta');
+    field.style.display = 'block';
+    field.textContent = message;
+
+    // Removing course elements
+    document.getElementById('seka').style.display = 'none';
+    document.getElementById('kasvis').style.display = 'none';
+}
+
 function calculateDayDifference() {
     // Getting 'paiva' url param
     const queryString = window.location.search;

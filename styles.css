@@ -153,3 +153,7 @@ p {
     width: calc(6rem * var(--contact-size-multiplier));
     height: calc(6rem * var(--contact-size-multiplier));
 }
+
+#virhekentta {
+    display: none;
+}

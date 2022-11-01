@@ -126,6 +126,19 @@ function editCssVariable(variable, value) {
 }
 
 /**
+ * Hides course elements and displays a message to the user.
+ */
+function displayErrorMessage(message) {
+    // Displaying error
+    var field = document.getElementById('virhe-kentta');
+    field.style.display = 'block';
+    field.textContent = message;
+
+    // Removing course elements
+    document.getElementById('ruokalista').style.display = 'none';
+}
+
+/**
  * Called when page is loaded.
  */
 function main() {

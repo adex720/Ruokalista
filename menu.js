@@ -30,37 +30,43 @@ function getCourse(dayId, whenClosed, update) {
     getJSON('https://www.sodexo.fi/ruokalistat/output/weekly_json/84', (error, data) => {
         if (error != null) {
             console.error(error);
-            //TODO: say someting to user
+            displayErrorMessage('Ruokalistan hakeminen Sodexon palvelimelta epäonnistui. Ongelma on Sodexon päässä. Yleensä tilanne korjaantuu 15 minuutissa.');
             return;
         }
 
-        // Getting many of the correct day
-        var menu = data.mealdates[dayId];
+        try {
+            // Getting many of the correct day
+            var menu = data.mealdates[dayId];
 
-        if (menu == undefined) {
-            // The restaurant isn't open
+            if (menu == undefined) {
+                // The restaurant isn't open
 
-            // The restaurant is open during most holidays, but the menu will still be shown,
-            // becuase the website is telling the menu and not when there is school. 
-            whenClosed();
+                // The restaurant is open during most holidays, but the menu will still be shown,
+                // becuase the website is telling the menu and not when there is school. 
+                whenClosed();
+                return;
+            }
+            var courses = menu.courses;
+
+            var meatCourse;
+            var vegetarianCourse;
+
+            if (courses[2] != undefined) {
+                // 2 courses
+                meatCourse = courses[1].title_fi;
+                vegetarianCourse = courses[2].title_fi;
+            } else {
+                // Only vegetarian course
+                meatCourse = undefined;
+                vegetarianCourse = courses[1].title_fi;
+            }
+
+            update(meatCourse, vegetarianCourse);
+        } catch (e) {
+            console.error(e);
+            displayErrorMessage('Palvelimelta saadun datan lukeminen epäonnistui. Mikäli tilanne ei ole korjaantunut 15 minuutin päästä, voit pyytää minua etsimään syytä. Jos en ole lähistöllä, voit jodlata.');
             return;
         }
-        var courses = menu.courses;
-
-        var meatCourse;
-        var vegetarianCourse;
-
-        if (courses[2] != undefined) {
-            // 2 courses
-            meatCourse = courses[1].title_fi;
-            vegetarianCourse = courses[2].title_fi;
-        } else {
-            // Only vegetarian course
-            meatCourse = undefined;
-            vegetarianCourse = courses[1].title_fi;
-        }
-
-        update(meatCourse, vegetarianCourse);
     });
 }
 
@@ -72,44 +78,51 @@ function getCourses(update) {
     getJSON('https://www.sodexo.fi/ruokalistat/output/weekly_json/84', (error, data) => {
         if (error != null) {
             console.error(error);
+            displayErrorMessage('Ruokalistan hakeminen Sodexon palvelimelta epäonnistui. Ongelma on Sodexon päässä. Yleensä tilanne korjaantuu 15 minuutissa.');
             return;
         }
 
-        var menus = data.mealdates;
-        var courses = []; // names
+        try {
+            var menus = data.mealdates;
+            var courses = []; // names
 
-        // Looping Mon-Fri
-        for (var i = 0; i < 5; i++) {
-            var menu = menus[i];
+            // Looping Mon-Fri
+            for (var i = 0; i < 5; i++) {
+                var menu = menus[i];
 
-            if (menu == undefined) {
-                // Closed this day
-                courses[i] = undefined;
-                continue;
+                if (menu == undefined) {
+                    // Closed this day
+                    courses[i] = undefined;
+                    continue;
+                }
+
+                // Courses of the day as json
+                var coursesJson = menu.courses;
+
+                // Courses of the day as strings
+                var meatCourse;
+                var vegetarianCourse;
+
+                // Add correct valuese
+                if (coursesJson[2] != undefined) {
+                    // 2 courses
+                    meatCourse = coursesJson[1].title_fi;
+                    vegetarianCourse = coursesJson[2].title_fi;
+                } else {
+                    // Only vegetarian course
+                    meatCourse = undefined;
+                    vegetarianCourse = coursesJson[1].title_fi;
+                }
+
+                // Add courses to array
+                courses[i] = [meatCourse, vegetarianCourse];
             }
 
-            // Courses of the day as json
-            var coursesJson = menu.courses;
-
-            // Courses of the day as strings
-            var meatCourse;
-            var vegetarianCourse;
-
-            // Add correct valuese
-            if (coursesJson[2] != undefined) {
-                // 2 courses
-                meatCourse = coursesJson[1].title_fi;
-                vegetarianCourse = coursesJson[2].title_fi;
-            } else {
-                // Only vegetarian course
-                meatCourse = undefined;
-                vegetarianCourse = coursesJson[1].title_fi;
-            }
-
-            // Add courses to array
-            courses[i] = [meatCourse, vegetarianCourse];
+            update(courses);
+        } catch (e) {
+            console.error(e);
+            displayErrorMessage('Palvelimelta saadun datan lukeminen epäonnistui. Mikäli tilanne ei ole korjaantunut 15 minuutin päästä, voit pyytää minua etsimään syytä. Jos en ole lähistöllä, voit jodlata.');
+            return;
         }
-
-        update(courses);
     });
 }
