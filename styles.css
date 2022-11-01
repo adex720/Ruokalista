@@ -15,6 +15,12 @@ body {
     font-family: 'Times New Roman', serif;
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #666666;
+    }
+}
+
 p {
     font-size: 150%;
 }
@@ -30,6 +36,12 @@ p {
     padding: 1rem 1.5rem;
 
     background-color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    .info {
+        background-color: #cccccc;
+    }
 }
 
 .ateriatyyppi {
@@ -65,6 +77,18 @@ p {
     background-color: lightgreen;
 }
 
+@media(prefers-color-scheme: dark) {
+    .seka {
+        background-color: crimson;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .kasvis {
+        background-color: darkgreen;
+    }
+}
+
 #navigointi {
     margin: calc(1rem + var(--between_margin)) 0rem;
 
@@ -84,6 +108,13 @@ p {
     border-style: outset;
     border-width: 0.25rem;
     border-color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+    .nappi {
+        background-color: #bbbbbb;
+        border-color: black;
+    }
 }
 
 .cf-placeholder {
