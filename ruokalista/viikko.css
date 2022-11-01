@@ -7,6 +7,12 @@
     background-color: white;
 }
 
+@media (prefers-color-scheme: dark) {
+    .otsikko {
+        background-color: #cccccc;
+    }
+}
+
 #ruokalista {
     display: flex;
     flex-direction: column;
