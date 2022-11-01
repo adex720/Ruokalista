@@ -1,5 +1,6 @@
 function initButtons() {
-    document.getElementById('takaisin').addEventListener('onclick', () => window.location.pathname += '../');
+    console.log(1);
+    document.getElementById('takaisin').addEventListener('click', () => window.location.href = window.location.pathname + '../');
 }
 
 /**
@@ -104,7 +105,7 @@ function finnishNameOfDayShort(dayId) {
  * Makes all course title elemnts have equal width.
  */
 function fixAligment() {
-     // Titles always exists because this method is called before making web request.
+    // Titles always exists because this method is called before making web request.
     var element = document.getElementById('otsikko_ka_ma');
     var width = element.getBoundingClientRect().width;
 
