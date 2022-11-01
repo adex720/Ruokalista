@@ -1,6 +1,6 @@
 :root {
     /* size of curved corners */
-    --field_border_radius: 2.5rem;
+    --field_border_radius: 1.25rem;
 
     /* vertical margin between title, courses and buttons*/
     --between_margin: 2rem;
@@ -11,8 +11,8 @@
     /* color variables */
     --background-color: skyblue;
     --element-color: white;
-    --sekaruoka-vari: lightcoral;
-    --kasvisruoka-vari: lightgreen;
+    --mealcourse-vari: lightcoral;
+    --vegetarian-course-vari: lightgreen;
 }
 
 body {
@@ -25,8 +25,8 @@ body {
     :root {
         --background-color: #666666;
         --element-color: #bbbbbb;
-        --sekaruoka-vari: crimson;
-        --kasvisruoka-vari: darkgreen;
+        --mealcourse-vari: crimson;
+        --vegetarian-course-vari: darkgreen;
     }
 }
 
@@ -73,11 +73,11 @@ p {
 }
 
 .seka {
-    background-color: var(--sekaruoka-vari);
+    background-color: var(--mealcourse-vari);
 }
 
 .kasvis {
-    background-color: var(--kasvisruoka-vari);
+    background-color: var(--vegetarian-course-vari);
 }
 
 #navigointi {
