@@ -1,5 +1,5 @@
 function initButtons() {
-    document.getElementById('edellinen').addEventListener('onclick', () => window.location.pathname += '../');
+    document.getElementById('takaisin').addEventListener('onclick', () => window.location.pathname += '../');
 }
 
 /**
