@@ -11,13 +11,16 @@
     /* color variables */
     --background-color: skyblue;
     --element-color: white;
-    --mealcourse-vari: lightcoral;
-    --vegetarian-course-vari: lightgreen;
+    --mealcourse-color: lightcoral;
+    --vegetarian-course-color: lightgreen;
+    --text-color: black;
+    --button-border-color: black;
 }
 
 body {
     background-color: var(--background-color);
     font-size: 160%;
+    color: var(--text-color);
     font-family: 'Times New Roman', serif;
 }
 
@@ -25,8 +28,8 @@ body {
     :root {
         --background-color: #333333;
         --element-color: #777777;
-        --mealcourse-vari: crimson;
-        --vegetarian-course-vari: darkgreen;
+        --mealcourse-color: crimson;
+        --vegetarian-course-color: darkgreen;
     }
 }
 
@@ -73,11 +76,11 @@ p {
 }
 
 .seka {
-    background-color: var(--mealcourse-vari);
+    background-color: var(--mealcourse-color);
 }
 
 .kasvis {
-    background-color: var(--vegetarian-course-vari);
+    background-color: var(--vegetarian-course-color);
 }
 
 #navigointi {
@@ -98,7 +101,7 @@ p {
     border-radius: var(--field_border_radius);
     border-style: outset;
     border-width: 0.25rem;
-    border-color: black;
+    border-color: var(--button-border-color);
 }
 
 .cf-placeholder {
