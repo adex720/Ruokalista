@@ -23,8 +23,8 @@ body {
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background-color: #666666;
-        --element-color: #bbbbbb;
+        --background-color: #333333;
+        --element-color: #777777;
         --mealcourse-vari: crimson;
         --vegetarian-course-vari: darkgreen;
     }
