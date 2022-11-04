@@ -138,6 +138,7 @@ function getNewPageByDayId(dayId) {
  * Updates content of page to show menu of the day.
  */
 function createMenu() {
+    document.getElementById('otsikko').textContent = nameOfDay() + ' ruokalista';
     getCourse(getDayId(), noSchool, update);
 }
 
@@ -195,7 +196,6 @@ function nameOfDay() {
  * Updates html elements to contain course names.
  */
 function update(meatCourse, vegetarianCourse) {
-    document.getElementById('otsikko').textContent = nameOfDay() + ' ruokalista';
     document.getElementById('ruoka_ka').textContent = vegetarianCourse;
 
     if (meatCourse != undefined) {
