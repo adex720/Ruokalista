@@ -231,12 +231,17 @@ function noSchool() {
 
 /**
  * Hides course elements and displays a message to the user.
+ * 
+ * @param {*} message Message to display
+ * @param {*} hide    Hides courses if true
  */
-function displayErrorMessage(message) {
+function displayMessage(message, hide) {
     // Displaying error
-    var field = document.getElementById('virhekentta');
+    var field = document.getElementById('viestikentta');
     field.style.display = 'block';
     field.textContent = message;
+
+    if (!hide) return;
 
     // Removing course elements
     document.getElementById('seka').style.display = 'none';

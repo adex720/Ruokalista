@@ -30,7 +30,7 @@ function getCourse(dayId, whenClosed, update) {
     getJSON('https://www.sodexo.fi/ruokalistat/output/weekly_json/84', (error, data) => {
         if (error != null) {
             console.error(error);
-            displayErrorMessage('Ruokalistan hakeminen Sodexon palvelimelta epäonnistui. Ongelma on Sodexon päässä. Yleensä tilanne korjaantuu 15 minuutissa.');
+            displayMessage('Ruokalistan hakeminen Sodexon palvelimelta epäonnistui. Ongelma on Sodexon päässä. Yleensä tilanne korjaantuu 15 minuutissa.', true);
             return;
         }
 
@@ -64,7 +64,7 @@ function getCourse(dayId, whenClosed, update) {
             update(meatCourse, vegetarianCourse);
         } catch (e) {
             console.error(e);
-            displayErrorMessage('Palvelimelta saadun datan lukeminen epäonnistui. Mikäli tilanne ei ole korjaantunut 15 minuutin päästä, voit pyytää minua etsimään syytä. Jos en ole lähistöllä, voit jodlata.');
+            displayMessage('Palvelimelta saadun datan lukeminen epäonnistui. Mikäli tilanne ei ole korjaantunut 15 minuutin päästä, voit pyytää minua etsimään syytä. Jos en ole lähistöllä, voit jodlata.', true);
             return;
         }
     });
@@ -78,7 +78,7 @@ function getCourses(update) {
     getJSON('https://www.sodexo.fi/ruokalistat/output/weekly_json/84', (error, data) => {
         if (error != null) {
             console.error(error);
-            displayErrorMessage('Ruokalistan hakeminen Sodexon palvelimelta epäonnistui. Ongelma on Sodexon päässä. Yleensä tilanne korjaantuu 15 minuutissa.');
+            displayMessage('Ruokalistan hakeminen Sodexon palvelimelta epäonnistui. Ongelma on Sodexon päässä. Yleensä tilanne korjaantuu 15 minuutissa.', true);
             return;
         }
 
@@ -121,7 +121,7 @@ function getCourses(update) {
             update(courses);
         } catch (e) {
             console.error(e);
-            displayErrorMessage('Palvelimelta saadun datan lukeminen epäonnistui. Mikäli tilanne ei ole korjaantunut 15 minuutin päästä, voit pyytää minua etsimään syytä. Jos en ole lähistöllä, voit jodlata.');
+            displayMessage('Palvelimelta saadun datan lukeminen epäonnistui. Mikäli tilanne ei ole korjaantunut 15 minuutin päästä, voit pyytää minua etsimään syytä. Jos en ole lähistöllä, voit jodlata.', true);
             return;
         }
     });
