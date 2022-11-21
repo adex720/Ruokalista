@@ -1,7 +1,7 @@
 /**
  * Requests a JSON file from an url and runs callback with response.
  */
-function getJSON(url, callback) {
+ function getJSON(url, callback) {
     let request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.responseType = 'json';

@@ -149,6 +149,7 @@ function main() {
 
     getCourses(loadCourses);
 
+    checkForMessage();
 }
 
 main();

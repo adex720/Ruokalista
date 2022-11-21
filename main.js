@@ -280,3 +280,5 @@ init();
 
 var dayDiference = calculateDayDifference();
 createMenu();
+console.log(2);
+checkForMessage();
