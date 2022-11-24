@@ -56,6 +56,8 @@ function initButtons() {
 function hideUnneccessaryButtons() {
     if (shouldHideTodayButton()) {
         document.getElementById('tanaan').style.display = 'none';
+    } else {
+        document.getElementById('tanaan').style.display = 'block';
     }
 }
 
@@ -63,7 +65,7 @@ function hideUnneccessaryButtons() {
  * Returns true if te button to load current page should be hidden.
  */
 function shouldHideTodayButton() {
-    if (calculateDayDifference() % 7 == 0) return true; // Already viewing current day.
+    if (dayDiference % 7 == 0) return true; // Already viewing current day.
 
     var todayDayId = getTodayDayId();
     return todayDayId == 6 || todayDayId == -1; // Current day is Saturday or Sunday
@@ -81,11 +83,9 @@ function shouldHideTodayButton() {
 function movementButtonPressed(mouseButton, movement) {
     if (mouseButton != 0) return; // Only moving on right click.
 
-    if (movement != undefined) {
-        window.location.href = getNewPageByDifference(movement)
-        return;
-    }
-    window.location.href = getNewPageByDayId(0);
+    if (movement != undefined) load(dayDiference + movement);
+    else load();
+    hideUnneccessaryButtons();
 }
 
 /**
@@ -217,16 +217,27 @@ function noSchool() {
     document.getElementById('otsikko').textContent = nameOfDay() + ' ruokalista';
 
     // Creating element informing no school
-    const title = document.createElement('h1');
-    title.textContent = 'Tänään ei ole koulua ):';
-    title.className = 'info';
-    document.getElementById('otsikko').parentElement.appendChild(title);
+    displayNoSchoolMessage();
 
     // Removing course elements
     document.getElementById('seka').style.display = 'none';
     document.getElementById('kasvis').style.display = 'none';
 
     runAligment();
+}
+
+function displayNoSchoolMessage() {
+    const element = document.getElementById('ei-koulua');
+    if (element != null) {
+        element.style.display = 'block';
+        return;
+    }
+
+    const title = document.createElement('h1');
+    title.textContent = 'Tänään ei ole koulua ):';
+    title.className = 'info';
+    title.id = 'ei-koulua';
+    document.getElementById('otsikko').parentElement.appendChild(title);
 }
 
 /**
@@ -276,9 +287,37 @@ function calculateDayDifference() {
     return difference;
 }
 
-init();
+/**
+ * Shows seka and kasvis elements. Hides no school message if it's visible.
+ */
+function restoreElements() {
+    document.getElementById('seka').style.display = 'flex';
+    document.getElementById('kasvis').style.display = 'flex';
+
+    var element = document.getElementById('ei-koulua');
+    if (element != null) element.style.display = 'none';
+}
+
+/**
+ * Loads menu for a day
+ * 
+ * @param {*} difference Diffence of days
+ */
+function load(difference) {
+    restoreElements();
+
+    if (difference == null) dayDiference = calculateDayDifference();
+    else dayDiference = difference;
+
+    createMenu();
+}
+
+function main() {
+    init();
+
+    load();
+    checkForMessage();
+}
 
 var dayDiference = calculateDayDifference();
-createMenu();
-console.log(2);
-checkForMessage();
+main();
