@@ -37,6 +37,19 @@ function registerEventListeners() {
         calculateCssVariables();
         runAligment()
     });
+
+    document.addEventListener('keyup', buttonPressed);
+}
+
+function buttonPressed(event) {
+    console.log(event.code);
+    switch (event.code) {
+        case 'ArrowLeft': movementButtonPressed(0, -1); break;
+        case 'ArrowRight': movementButtonPressed(0, +1); break;
+
+        case 'ArrowDown': case 'ArrowUp': case 'Space':
+            movementButtonPressed(0, undefined);
+    }
 }
 
 /**
@@ -77,7 +90,7 @@ function shouldHideTodayButton() {
  * and the last day when movement is -1.
  * Returns to current day if movement is undefined.
  * 
- * @param {*} mouseButton Id of the mouse button
+ * @param {*} mouseButton Id of the mouse button. Set value to 0 if activated otherwhere (keyboard).
  * @param {*} movement Pages to move, positive or negative
  */
 function movementButtonPressed(mouseButton, movement) {
