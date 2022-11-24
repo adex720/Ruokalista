@@ -323,5 +323,5 @@ function main() {
     checkForMessage();
 }
 
-var dayDiference;
+var dayDiference = calculateDayDifference();
 main();
