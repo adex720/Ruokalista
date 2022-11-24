@@ -84,7 +84,7 @@ function movementButtonPressed(mouseButton, movement) {
     if (mouseButton != 0) return; // Only moving on right click.
 
     if (movement != undefined) load(dayDiference + movement);
-    else load();
+    else load(0);
     hideUnneccessaryButtons();
 }
 
@@ -319,5 +319,5 @@ function main() {
     checkForMessage();
 }
 
-var dayDiference = calculateDayDifference();
+var dayDiference;
 main();
