@@ -240,17 +240,8 @@ function noSchool() {
 }
 
 function displayNoSchoolMessage() {
-    const element = document.getElementById('ei-koulua');
-    if (element != null) {
-        element.style.display = 'block';
-        return;
-    }
-
-    const title = document.createElement('h1');
-    title.textContent = 'Tänään ei ole koulua ):';
-    title.className = 'info';
-    title.id = 'ei-koulua';
-    document.getElementById('otsikko').parentElement.appendChild(title);
+    document.getElementById('ei-koulua').style.display = 'block';
+    return;
 }
 
 /**
@@ -307,8 +298,7 @@ function restoreElements() {
     document.getElementById('seka').style.display = 'flex';
     document.getElementById('kasvis').style.display = 'flex';
 
-    var element = document.getElementById('ei-koulua');
-    if (element != null) element.style.display = 'none';
+    document.getElementById('ei-koulua').style.display = 'none';
 }
 
 /**

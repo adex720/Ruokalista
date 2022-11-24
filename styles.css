@@ -50,6 +50,10 @@ p {
     background-color: var(--element-color);
 }
 
+#ei-koulua {
+    display: none;
+}
+
 .ateriatyyppi {
     margin: 0rem;
     text-align: right;
