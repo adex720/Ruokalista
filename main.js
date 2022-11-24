@@ -42,7 +42,6 @@ function registerEventListeners() {
 }
 
 function buttonPressed(event) {
-    console.log(event.code);
     switch (event.code) {
         case 'ArrowLeft': movementButtonPressed(0, -1); break;
         case 'ArrowRight': movementButtonPressed(0, +1); break;
@@ -307,6 +306,8 @@ function restoreElements() {
  * @param {*} difference Diffence of days
  */
 function load(difference) {
+    if (dayDiference != null && difference == dayDiference) return; // No change
+
     restoreElements();
 
     if (difference == null) dayDiference = calculateDayDifference();
