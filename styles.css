@@ -26,10 +26,10 @@ body {
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background-color: #333333;
-        --element-color: #777777;
-        --mealcourse-color: crimson;
-        --vegetarian-course-color: darkgreen;
+        --background-color: #1d1d1d;
+        --element-color: #4a4a4a;
+        --mealcourse-color: #621515;
+        --vegetarian-course-color: #003300;
     }
 }
 
