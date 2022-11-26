@@ -9,3 +9,4 @@ function analyze(error, json) {
     if (!json['m']) return;
     displayMessage(json['m'], json['h']);
 }
+    

@@ -29,22 +29,32 @@
     </div>
     <div id="viestit">
         <h1 id="ei-koulua" class="info">Tänään ei olu koulua ):</h1>
-        <p id="viestikentta" class="info"></p>
-    </div>
-    <div id="navigointi">
-        <button id="edellinen" class="nappi">Edellinen</button>
-        <button id="tanaan" class="nappi">Tänään</button>
-        <div id="cf-placeholder-navbar"></div>
-        <button id="seuraava" class="nappi">Seuraava</button>
-    </div>
-    <div id="cf-placeholder-bottom" class="cf-placeholder">
-        <div id="contacts">
-            <div class="contact-filler" id="contact-filler"></div>
-            <a href="https://github.com/adex720/Ruokalista" target="_blank" class="contact-link">
-                <img class="contact" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-                    alt="GitHub Repository">
-            </a>
+        <div id="viestikentta" class="info">
+            <div class="viestit-out">
+                <p id="viesti" class="viestit-in"></p>
+                <div>
+                    <img src="cross.svg" id="sulje" class="viestit-in" onclick="hideMessage()">
+                </div>
+            </div>
         </div>
-    </div>
+        <div id="navigointi">
+            <button id="edellinen" class="nappi">Edellinen</button>
+            <button id="tanaan" class="nappi">Tänään</button>
+            <div id="cf-placeholder-navbar"></div>
+            <button id="seuraava" class="nappi">Seuraava</button>
+        </div>
+        <div id="cf-placeholder-bottom" class="cf-placeholder">
+            <div id="contacts">
+                <div class="contact-filler" id="contact-filler"></div>
+                <div class="contact-link" onclick="displaySiteInfo()">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Octicons-info.svg"
+                        alt="Imformation about the site" class="contact">
+                </div>
+                <a href="https://github.com/adex720/Ruokalista" target="_blank">
+                    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                        alt="GitHub Repository" class="contact contact-link">
+                </a>
+            </div>
+        </div>
 </body>
 </html>

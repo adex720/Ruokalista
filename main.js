@@ -1,3 +1,5 @@
+var legal = 'Tämä sivu näyttää Kuninkaantien Lukion ruokalistan siinä muodossa kuin se on esitetty Sodexon verkkosivulla. Sivun ylläpito ei ole vastuussa virheellisestä tiedosta.';
+
 /**
  * Runs everything that should be run before asking menu from server
  */
@@ -244,22 +246,39 @@ function displayNoSchoolMessage() {
 }
 
 /**
- * Hides course elements and displays a message to the user.
+ * Displays a message to the user.
+ * Hides meals if set so.
  * 
  * @param {*} message Message to display
  * @param {*} hide    Hides courses if true
  */
 function displayMessage(message, hide) {
-    // Displaying error
-    var field = document.getElementById('viestikentta');
-    field.style.display = 'block';
-    field.textContent = message;
+    // Displaying message
+    document.getElementById('viestikentta').style.display = 'block';
+    document.getElementById('viesti').innerHTML = message;
 
     if (!hide) return;
 
     // Removing course elements
     document.getElementById('seka').style.display = 'none';
     document.getElementById('kasvis').style.display = 'none';
+
+    // Removing close option since it doesn't make to sense close the message if the meals are not showing.
+    document.getElementById('sulje').style.display = 'none';
+}
+
+/**
+ * Hides the message box.
+ */
+function hideMessage() {
+    document.getElementById('viestikentta').style.display = 'none';
+}
+
+/**
+ * Displays information about the site.
+ */
+function displaySiteInfo() {
+    displayMessage(legal, false);
 }
 
 function calculateDayDifference() {

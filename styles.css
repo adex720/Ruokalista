@@ -96,6 +96,8 @@ p {
 }
 
 .nappi {
+    cursor: pointer;
+
     font-size: 200%;
     background-color: var(--element-color);
 
@@ -141,10 +143,33 @@ p {
     margin: 0rem calc(2rem * var(--contact-size-multiplier)) 0rem 0rem;
 
     border-radius: calc(3rem * var(--contact-size-multiplier));
-    width: calc(6rem * var(--contact-size-multiplier));
     height: calc(6rem * var(--contact-size-multiplier));
+    width: auto;
+}
+
+.contact-link {
+    cursor: pointer;
 }
 
 #viestikentta {
     display: none;
+}
+
+#viesti {
+    margin: 0.5rem 0rem;
+}
+
+#sulje {
+    cursor: pointer;
+}
+
+.viestit-out {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.viestit-in {
+    
 }
