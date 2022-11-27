@@ -97,6 +97,7 @@ function shouldHideTodayButton() {
 function movementButtonPressed(mouseButton, movement) {
     if (mouseButton != 0) return; // Only moving on right click.
 
+    console.log(dayDiference + movement);
     if (movement != undefined) load(dayDiference + movement);
     else load(0);
     hideUnneccessaryButtons();
@@ -299,13 +300,24 @@ function calculateDayDifference() {
     else difference = 7 + day;
 
     // Moving selected date to the same week as the current day is while remaining day of the week
+    return moveDifferenceToCurrentWeek(difference);
+}
+
+/**
+ * Returns difference to the day which is the same weekday in the same week than the current week
+ * and which has the given difference to today's weekday.
+ * 
+ * @param {*} difference Difference from current day
+ * @returns 
+ */
+function moveDifferenceToCurrentWeek(difference) {
     var tanaanPaivaId = getTodayDayId();
     if (tanaanPaivaId == -1) tanaanPaivaId = 6;
 
-    var uusiPaivaId = tanaanPaivaId + difference;
-    if (uusiPaivaId >= 7) uusiPaivaId -= 7;
+    var dayId = tanaanPaivaId + difference;
+    if (dayId >= 7) difference -= 7;
 
-    if (uusiPaivaId < tanaanPaivaId) difference -= 7;
+    if (dayId < 0) difference += 7;
     return difference;
 }
 
@@ -325,6 +337,9 @@ function restoreElements() {
  * @param {*} difference Diffence of days
  */
 function load(difference) {
+    console.log(difference);
+    difference = moveDifferenceToCurrentWeek(difference);
+    console.log(difference);
     if (dayDiference != null && difference == dayDiference) return; // No change
 
     restoreElements();
