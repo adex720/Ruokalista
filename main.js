@@ -97,7 +97,6 @@ function shouldHideTodayButton() {
 function movementButtonPressed(mouseButton, movement) {
     if (mouseButton != 0) return; // Only moving on right click.
 
-    console.log(dayDiference + movement);
     if (movement != undefined) load(dayDiference + movement);
     else load(0);
     hideUnneccessaryButtons();
@@ -337,9 +336,7 @@ function restoreElements() {
  * @param {*} difference Diffence of days
  */
 function load(difference) {
-    console.log(difference);
     difference = moveDifferenceToCurrentWeek(difference);
-    console.log(difference);
     if (dayDiference != null && difference == dayDiference) return; // No change
 
     restoreElements();
