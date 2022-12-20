@@ -9,7 +9,8 @@
     --contact-size-multiplier: 1;
 
     /* color variables */
-    --background-color: skyblue;
+    --background-color-base: skyblue;
+    --background-color-gradient: skyblue;
     --element-color: white;
     --mealcourse-color: lightcoral;
     --vegetarian-course-color: lightgreen;
@@ -18,7 +19,7 @@
 }
 
 body {
-    background-color: var(--background-color);
+    background-color: var(--background-color-base);
     font-size: 160%;
     color: var(--text-color);
     font-family: 'Times New Roman', serif;
@@ -26,10 +27,11 @@ body {
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background-color: #1d1d1d;
+        --background-color-base: #1d1d1d;
+        --background-color-gradient: #272727;
         --element-color: #4a4a4a;
         --mealcourse-color: #7a1a1a;
-        --vegetarian-course-color: #006600;
+        --vegetarian-course-color: #0a500a;
     }
 }
 
@@ -170,6 +172,29 @@ p {
     gap: 1em;
 }
 
-.viestit-in {
-    
+.viestit-in {}
+
+.nojs {
+    border-radius: var(--field_border_radius);
+
+    margin: 2rem 1rem;
+    padding: 2rem 1.5rem;
+
+    background-color: #ffffff;
+
+    font-weight: bold;
+    font-size: 150%;
+}
+
+#bottom {
+    position: absolute;
+
+    height: 10rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    z-index: -1;
+
+    background: linear-gradient(var(--background-color-base), var(--background-color-gradient));
 }

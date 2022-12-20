@@ -42,8 +42,9 @@ function runAligment() {
  */
 function resetRealigment() {
     editCssVariable('--between_margin', '2rem');
-    document.getElementById('contact-filler').style.display = 'none';
+    document.getElementById('contact-filler').setAttribute('style', 'display: none');
     moveContactsToBottom(true);
+    document.getElementById('bottom').setAttribute('style', 'display: absolute');
 }
 
 /**
@@ -114,8 +115,8 @@ function isRoomForContacts() {
 /**
  * Moves the contacts to the bottom of the page.
  * 
- * @param {boolean} toBottom If true, contacts will be moved the bottom of screen.
- *                           If false, contacts will be moved below movement buttons.
+ * @param {boolean} toBottom If true, contacts will be moved to the bottom of screen.
+ *                           If false, contacts will be moved just below movement buttons.
  */
 function moveContactsToBottom(toBottom) {
     var contacts = document.getElementById('contacts');
@@ -123,16 +124,22 @@ function moveContactsToBottom(toBottom) {
 
     var placeholder = document.getElementById('cf-placeholder-bottom');
 
+    // Handle placeholder placement
     var position = toBottom ? 'absolute' : 'relative';
-    placeholder.style.position = position;
+    placeholder.setAttribute('style', 'display: ' + position);
 
     if (parent.id !== 'cf-placeholder-bottom') {
         parent.removeChild(contacts);
         placeholder.appendChild(contacts);
 
         var navbarPlaceholder = document.getElementById('cf-placeholder-navbar');
-        navbarPlaceholder.style.position = 'absolute';
+        navbarPlaceholder.setAttribute('style', 'display: absolute');
     }
+
+    // Hide lighter bottom gradient if the heigth of the page is larger than the screen's
+    position = toBottom ? 'none' : 'absolute';
+    document.getElementById('bottom').setAttribute('style', 'display: ' + position);
+
 }
 
 /**

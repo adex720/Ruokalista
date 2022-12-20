@@ -18,6 +18,9 @@
 <body>
     <div id="ruokalista">
         <h1 id="otsikko" class="info">Ruokalista</h1>
+        <noscript>
+            <p class="nojs">Ruokalistan lataamiseen vaditaan javascriptin salliminen.</p>
+        </noscript>
         <div id="seka" class="seka ateria">
             <h2 id="otsikko_sr" class="ateriatyyppi">Sekaruoka</h2>
             <p id="ruoka_sr" class="ruoka">&#8203;</p>
@@ -27,6 +30,7 @@
             <p id="ruoka_ka" class="ruoka">&#8203;</p>
         </div>
     </div>
+
     <div id="viestit">
         <h1 id="ei-koulua" class="info">Tänään ei olu koulua ):</h1>
         <div id="viestikentta" class="info">
@@ -37,12 +41,14 @@
                 </div>
             </div>
         </div>
+
         <div id="navigointi">
             <button id="edellinen" class="nappi">Edellinen</button>
             <button id="tanaan" class="nappi">Tänään</button>
             <div id="cf-placeholder-navbar"></div>
             <button id="seuraava" class="nappi">Seuraava</button>
         </div>
+    
         <div id="cf-placeholder-bottom" class="cf-placeholder">
             <div id="contacts">
                 <div class="contact-filler" id="contact-filler"></div>
@@ -56,5 +62,8 @@
                 </a>
             </div>
         </div>
+    </div>
+
+    <div id="bottom"></div>
 </body>
 </html>
