@@ -28,9 +28,10 @@
 
     <h1 id="ei-koulua" class="info">Tänään ei ole koulua ):</h1>
 
-    <div id="vuorot">
+    <div id="vuorot" class="needs-account">
         <p id="vuoro-teksti" class="info">$kurssi$ ruokailuvuoro $aika$</p>
         <div id="kayttaja-napit">
+            <p id="koodi-esilla" class="info">Koodisi:</p>
             <button id="koodi" class="nappi">Näytä koodi</button>
             <button id="paivita" class="nappi">Päivitä lukujärjestys</button>
             <button id="poista" class="nappi">Poista tiedot</button>
@@ -57,21 +58,20 @@
 
     <div id="luo">
         <div id="luo-kuvasta">
-            <p class="ohje">Lataa ruokailuvuorot lukujärjestyksestä</p>
+            <p class="ohje info">Lataa ruokailuvuorot lukujärjestyksestä</p>
             <button id="lataa-kuva" class="nappi lataa">Lataa</button>
             <input type="file" id="syote-kuva" class="syote" name="lukujarjestys"
                 accept="image/png, image/jpg, image/jpeg">
         </div>
         <div id="lataa-vanha">
-            <p class="ohje">Kopio ruokailuvuorot toiselta laitteelta</p>
-            <p class="ohje">Paina toisella laitteella <i>Näytä koodi</i> -nappulaa, ja kirjoita koodi kenttään.</p>
+            <p class="ohje info">Näytä ruokailuvuorot koodin perusteella</p>
             <button id="lataa-koodi" class="nappi lataa">Lataa</button>
             <input type="text" id="syote-teksi" class="syote" name="koodi">
         </div>
     </div>
 
     <div id="cookies">
-        <p id="cookies-info"></p>
+        <p id="cookies-info">Sivustomme käyttää evästeitä. Löydät käyttötarkoitukset painamalla Lue lisää -nappia.</p>
         <div id="cookies-buttons">
             <button id="read-more" class="nappi">Lue lisää</button>
             <button id="deny" class="nappi">Estä kaikki evästeet</button>

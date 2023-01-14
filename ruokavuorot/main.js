@@ -1,6 +1,8 @@
 
 
 function init() {
+    checkAccount();
+
     align();
     checkForMessage();
 
@@ -30,9 +32,9 @@ function initButtons() {
     document.getElementById('seuraava').addEventListener('mouseup', e => movementButtonPressed(e.button, +1), false);
     document.getElementById('tanaan').addEventListener('mouseup', e => movementButtonPressed(e.button, undefined), false);
 
-    document.getElementById('koodi').addEventListener('click', showCode);
+    document.getElementById('koodi').addEventListener('click', toggleCode);
     document.getElementById('paivita').addEventListener('click', askNewSchedule);
-    document.getElementById('posita').addEventListener('click', deleteUser);
+    document.getElementById('poista').addEventListener('click', deleteUser);
 }
 
 /**
@@ -165,6 +167,7 @@ function nameOfDay() {
  */
 function updateMenu() {
     document.getElementById('otsikko').textContent = nameOfDay() + ' ruokalista';
+    updateLunchTimes();
     getCourse(dayId, noSchool, update);
 }
 
@@ -255,17 +258,123 @@ function hideMessage() {
     document.getElementById('viestikentta').style.display = 'none';
 }
 
+var hasAcceptedCookies = false;
+var hasAccount = false;
+
+var accountCode;
+var lunchTimes = [];
+var classes = [];
+
+const LUNCH_TIME_UNDEFINED = -1;
+const LUNCH_TIME_FREE = 0;
+const LUNCH_TIME_1 = 1;
+const LUNCH_TIME_2 = 2;
+const LUNCH_TIME_3 = 3;
+const LUNCH_TIME_4 = 4;
+
+const LUNCH_TIMES = {
+    1: '11.05 - 11.50',
+    2: '11.45 - 12.15',
+    3: '12.05 - 12.35',
+    4: '12.35 - 13.05'
+}
+
+/**
+ * Checks account status and hides and shows correct elements
+ */
+function checkAccount() {
+    if (!localStorage.getItem('cookiesEnabled')) {
+        hasAcceptedCookies = false;
+        hasAccount = false;
+        return;
+    }
+
+    hasAcceptedCookies = true;
+    hideCookieElement();
+
+    let accountCode = localStorage.getItem('code');
+    if (accountCode === null) {
+        hasAccount = false;
+        return;
+    }
+
+    showAccountDetails();
+
+    let account = true;
+    updateLunchTimes();
+}
+
+/**
+ * Handles changes when locally saved account is deleted.
+ */
+function invalidAccountFound() {
+    hasAccount = false;
+    hideAccountElements();
+    displayMessage('Käyttäjätunnusta ei löydy. Varmista että koodi on kirjoitettu oikein. Mikäli koodi on oikea, käyttäjäsi on poistettu toisella laitteella.', false);
+}
+
+function updateLunchTimes() {
+    if (lunchTimes.length == 0) return;
+
+    let message;
+    let time = lunchTimes[dayId];
+    let className = classes[dayId];
+    if (time == LUNCH_TIME_UNDEFINED) {
+        message = 'Ruokailu järjestetään poikkeuksellisesti.';
+    } else {
+        message = className + ': ruokailu: ' + time;
+    }
+
+    document.getElementById('vuoro-teksti').textContent = message;
+}
+
+/**
+ * Shows account info related elements and hides account creation related elements
+ */
+function showAccountDetails() {
+    document.getElementById('vuorot').style.display = 'block';
+    document.getElementById('luo').style.display = 'none';
+}
+
+/**
+ * Hides account info related elements and shows account creation related elements
+ */
+function hideAccountElements() {
+    document.getElementById('vuorot').style.display = 'none';
+    document.getElementById('luo').style.display = 'block';
+}
+
+function hideCookieElement() {
+    document.getElementById('cookies').style.display = 'none';
+}
+
+/**
+ * If code is hidden, shows code.
+ * If code is shown, hides code.
+ */
+function toggleCode() {
+    let current = document.getElementById('koodi-esilla').style.display;
+    if (current == '' || current == 'none') showCode();
+    else hideCode();
+}
+
 /**
  * Shows the code of the account
  */
 function showCode() {
+    document.getElementById('koodi-esilla').textContent = 'koodisi: ' + code;
+    document.getElementById('koodi-esilla').style.display = 'block';
+
+    document.getElementById('koodi').textContent = 'Piilota koodi';
 }
 
 /**
  * Hides the code of the account
  */
 function hideCode() {
+    document.getElementById('koodi-esilla').style.display = 'none';
 
+    document.getElementById('koodi').textContent = 'Näytä koodi';
 }
 
 /**
@@ -287,7 +396,89 @@ function updateSchedule() {
  * Then permanently delete account
  */
 function deleteUser() {
+    if (confirm('Haluatko varmasti poistaa tietosi? Tätä ei voi peruuttaa.')) {
+        deleteFromServer();
+    }
+}
 
+function onAccountDeleted(status) {
+    if (status != null) {
+        alert('Yhteyden muodostus palvelimeen epäonnistui. Yritä uudelleen muutaman minuutin päästä.');
+        return;
+    }
+
+    hasAccount = false;
+    hideAccountElements();
+}
+
+const SERVER_URL = 'amauno.kapsi.fi/kunkkuruoka.online/server';
+
+const ACTION_VALIDATE = {
+    'action': 'validate'
+};
+
+const ACTION_GET_TIMES = {
+    'action': 'get-times'
+};
+
+const ACTION_DELETE_ACCOUNT = {
+    'action': 'delete'
+};
+
+/**
+ * NOT SANITIZED!!!
+ */
+function makeServerRequest(params, callback, onNoUser) {
+    if (!hasAccount) return;
+
+    let request = SERVER_URL + '?code=' + code;
+    for (let [key, value] of params) {
+        request += '&' + key + '=' + value;
+    }
+
+    if (onNoUser == undefined || onNoUser == null) {
+        getJSON(request, callback);
+        return;
+    }
+
+    getJSON(request, (code, json) => {
+        if (code != null) {
+            callback(code);
+            return;
+        }
+
+        let serverCode = json['status'];
+        if (serverCode == 401) onNoUser(null, json);
+        else callback(null, json);
+    });
+}
+
+/**
+ * Requests lunch times from server and updates page.
+ */
+function getLunchTimes() {
+    makeServerRequest(ACTION_GET_TIMES, (code, json) => {
+        if (code != null) {
+            displayMessage('Ruokailuvuorojen lataaminen epäonnistui', false);
+            return;
+        }
+
+        lunchTimes = parseTimes(json);
+        classes = parseClasses(json);
+        updateLunchTimes();
+    }, invalidAccountFound);
+}
+
+function deleteFromServer() {
+    makeServerRequest(ACTION_DELETE_ACCOUNT, onAccountDeleted);
+}
+
+function parseTimes(json) {
+    return json['times'];
+}
+
+function parseClasses(json) {
+    return json['classes'];
 }
 
 init();
