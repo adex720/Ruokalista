@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html lang="fi">
+
+<head>
+    <title>Ruokalista</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Aapo Mauno">
+    <meta name="description" content="Tältä sivulta näkee Kuninkaantien lukion nykyisen viikon ruokalistan.">
+    <script src='../util.js' defer></script>
+    <script src='../menu.js' defer></script>
+    <script src='main.js' defer></script>
+    <link rel='stylesheet' href='../styles.css'>
+    <link rel='stylesheet' href='vuorot.css'>
+</head>
+
+<body>
+    <div id="courses">
+        <h1 id="otsikko" class="info">Ruokalista</h1>
+        <div id="seka" class="seka ateria">
+            <h2 id="otsikko_sr" class="ateriatyyppi">Sekaruoka</h2>
+            <p id="ruoka_sr" class="ruoka">&#8203;</p>
+        </div>
+        <div id="kasvis" class="kasvis ateria">
+            <h2 id="otsikko_ka" class="ateriatyyppi">Kasvisruoka</h2>
+            <p id="ruoka_ka" class="ruoka">&#8203;</p>
+        </div>
+    </div>
+
+    <h1 id="ei-koulua" class="info">Tänään ei ole koulua ):</h1>
+
+    <div id="vuorot">
+        <p id="vuoro-teksti" class="info">$kurssi$ ruokailuvuoro $aika$</p>
+        <div id="kayttaja-napit">
+            <button id="koodi" class="nappi">Näytä koodi</button>
+            <button id="paivita" class="nappi">Päivitä lukujärjestys</button>
+            <button id="poista" class="nappi">Poista tiedot</button>
+        </div>
+    </div>
+
+    <div id="viestit">
+        <div id="viestikentta" class="info">
+            <div class="viestit-out">
+                <p id="viesti" class="viestit-in"></p>
+                <div>
+                    <img src="../cross.svg" id="sulje" class="viestit-in" onclick="hideMessage()">
+                </div>
+            </div>
+        </div>
+
+        <div id="navigointi">
+            <button id="edellinen" class="nappi">Edellinen</button>
+            <button id="tanaan" class="nappi">Tänään</button>
+            <div id="cf-placeholder-navbar"></div>
+            <button id="seuraava" class="nappi">Seuraava</button>
+        </div>
+    </div>
+
+    <div id="luo">
+        <div id="luo-kuvasta">
+            <p class="ohje">Lataa ruokailuvuorot lukujärjestyksestä</p>
+            <button id="lataa-kuva" class="nappi lataa">Lataa</button>
+            <input type="file" id="syote-kuva" class="syote" name="lukujarjestys"
+                accept="image/png, image/jpg, image/jpeg">
+        </div>
+        <div id="lataa-vanha">
+            <p class="ohje">Kopio ruokailuvuorot toiselta laitteelta</p>
+            <p class="ohje">Paina toisella laitteella <i>Näytä koodi</i> -nappulaa, ja kirjoita koodi kenttään.</p>
+            <button id="lataa-koodi" class="nappi lataa">Lataa</button>
+            <input type="text" id="syote-teksi" class="syote" name="koodi">
+        </div>
+    </div>
+
+    <div id="cookies">
+        <p id="cookies-info"></p>
+        <div id="cookies-buttons">
+            <button id="read-more" class="nappi">Lue lisää</button>
+            <button id="deny" class="nappi">Estä kaikki evästeet</button>
+            <button id="accept" class="nappi">Salli evästeet</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

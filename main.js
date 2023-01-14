@@ -20,16 +20,6 @@ function calculateCssVariables() {
 }
 
 /**
- * Edits a variable used on a stylesheet.
- * 
- * @param {*} variable Name of the variable
- * @param {*} value New value
- */
-function editCssVariable(variable, value) {
-    document.querySelector(':root').style.setProperty(variable, value);
-}
-
-/**
  * Registers all event listeners.
  */
 function registerEventListeners() {
@@ -76,7 +66,7 @@ function hideUnneccessaryButtons() {
 }
 
 /**
- * Returns true if te button to load current page should be hidden.
+ * Returns true if the button to load current page should be hidden.
  */
 function shouldHideTodayButton() {
     if (dayDiference % 7 == 0) return true; // Already viewing current day.

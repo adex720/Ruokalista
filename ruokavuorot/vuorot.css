@@ -1,0 +1,27 @@
+#syote-kuva {
+    margin: 0.75rem;
+    padding: 1.5rem;
+
+    width: auto;
+    height: 4rem;
+    font-size: 4rem;
+}
+
+#syote-teksi {
+    width: 18rem;
+    height: 3rem;
+    font-size: 3rem;
+}
+
+.syote {
+    margin: 0.75rem;
+    padding: 1.5rem;
+}
+
+#kayttaja-napit {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#koodi {
+}

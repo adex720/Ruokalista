@@ -1,0 +1,2 @@
+@echo off
+scp -r FILES HOST

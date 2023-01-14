@@ -1,4 +1,15 @@
 
+
+/**
+ * Edits a variable used on a stylesheet.
+ * 
+ * @param {*} variable Name of the variable
+ * @param {*} value New value
+ */
+function editCssVariable(variable, value) {
+    document.querySelector(':root').style.setProperty(variable, value);
+}
+
 function checkForMessage() {
     getJSON('message.json', analyze);
 }

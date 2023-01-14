@@ -27,9 +27,9 @@ body {
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background-color-base: #1d1d1d;
-        --background-color-gradient: #272727;
-        --element-color: #4a4a4a;
+        --background-color-base: #252525;
+        --background-color-gradient: #303030;
+        --element-color: #4f4f4f;
         --mealcourse-color: #7a1a1a;
         --vegetarian-course-color: #0a500a;
     }
