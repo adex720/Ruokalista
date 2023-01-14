@@ -16,14 +16,28 @@ function align() {
     document.getElementById('otsikko_sr').setAttribute('style', 'flex-basis:' + width + 'px');
 }
 
-function addEventListeners() {
+/**
+ * Adds event listeners outside cokies panel.
+ */
+function addEventListeners(force) {
+    if (!hasAcceptedCookies && !force) {
+        initCookieButtons();
+        return;
+    }
+
     initButtons();
 
     document.addEventListener('keyup', buttonPressed);
 }
 
+function initCookieButtons() {
+    document.getElementById('read-more').addEventListener('click', displayCookiePolicy);
+    document.getElementById('deny').addEventListener('click', onCookiesDenied);
+    document.getElementById('accept').addEventListener('click', onCookiesAccepted);
+}
+
 /**
- * Adds mouse event listeners to movement buttons.
+ * Adds mouse event listeners to buttons outside cookies panel.
  */
 function initButtons() {
     hideUnneccessaryButtons();
@@ -283,7 +297,7 @@ const LUNCH_TIMES = {
  * Checks account status and hides and shows correct elements
  */
 function checkAccount() {
-    if (!localStorage.getItem('cookiesEnabled')) {
+    if (localStorage.getItem('cookiesEnabled') != 'true') {
         hasAcceptedCookies = false;
         hasAccount = false;
         return;
@@ -302,6 +316,24 @@ function checkAccount() {
 
     let account = true;
     updateLunchTimes();
+}
+
+const COOKIE_INFO = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni minima deserunt placeat et? At, laborum aspernatur! Repellendus cupiditate voluptate natus deleniti totam, omnis aliquam voluptates corporis eius culpa est. Harum.';
+
+function displayCookiePolicy() {
+    document.getElementById('cookies-info').innerHTML = COOKIE_INFO;
+}
+
+function onCookiesAccepted() {
+    hasAcceptedCookies = true;
+    localStorage.setItem('cookiesEnabled', 'true');
+    document.getElementById('cookies').style.display = 'none';
+    addEventListeners();
+}
+
+function onCookiesDenied() {
+    document.getElementById('cookies').style.display = 'none';
+    addEventListeners(true);
 }
 
 /**
@@ -408,6 +440,7 @@ function onAccountDeleted(status) {
     }
 
     hasAccount = false;
+    localStorage.removeItem('code');
     hideAccountElements();
 }
 

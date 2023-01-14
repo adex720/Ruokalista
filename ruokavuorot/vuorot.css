@@ -40,9 +40,35 @@
 }
 
 .needs-account {
-   /* display: none;*/
+    display: none;
 }
 
 #koodi-esilla {
     display: none;
 }
+
+#cookies {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #009f00;
+}
+
+#cookies-info {
+    margin: 2rem 1rem;
+}
+
+#cookies-buttons {
+    margin: 1rem;
+
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
