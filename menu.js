@@ -197,9 +197,13 @@ function parseCoursesOnSpecialWeek(data) {
     var menus = data.mealdates;
     var courses = [];
     for (var i = 0; i < menus.length; i++) {
-        var course = data[i];
+        var course = menus[i];
+        var name = course.date;
+        var id = getDayIdByName(name)
 
-        courses[getDayId('ma')] = 2;
+        courses[id] = coursesToObject(course.courses);
+        
+        console.log(courses[id]);
     }
 
     return courses;

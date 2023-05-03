@@ -199,7 +199,7 @@ function nameOfDayById(dayId) {
  * 
  * @param {*} name Finnish name of the day
  */
-function getDayId(name) {
+function getDayIdByName(name) {
     switch (name.subString(0, 2).toLowerCase()) {
         case 'ma': return 0;
         case 'ti': return 1;

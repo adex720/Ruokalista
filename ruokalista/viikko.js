@@ -102,6 +102,27 @@ function finnishNameOfDayShort(dayId) {
 }
 
 /**
+ * Returns the id of the day. mon=0, sun=6
+ * Invalid => -1
+ * 
+ * @param {*} name Finnish name of the day
+ */
+function getDayIdByName(name) {
+    switch (name.substring(0, 2).toLowerCase()) {
+        case 'ma': return 0;
+        case 'ti': return 1;
+        case 'ke': return 2;
+        case 'to': return 3;
+        case 'pe': return 4;
+        case 'la': return 5;
+        case 'su': return 6;
+    }
+
+    return -1;
+
+}
+
+/**
  * Makes all course title elemnts have equal width.
  */
 function fixAligment() {
