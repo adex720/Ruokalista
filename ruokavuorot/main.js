@@ -140,7 +140,6 @@ function getPageDayId() {
     return dayId;
 }
 
-
 /**
  * Returns a Date object with the weekday matching dayId and it being on the current week.
  */
@@ -152,6 +151,7 @@ function getDateOnCurrentWeek() {
     date.setDate(date.getDate() + dayId - todayId);
     return date;
 }
+
 /**
  * Returns the name of the day and date on the page on Finnish
  */
@@ -174,6 +174,44 @@ function nameOfDay() {
     }
 
     return dayOfWeek + ' ' + dateOfMonth + '.' + month + '.';
+}
+
+/**
+ * Returns the name of the day on Finnish based on its id.
+ */
+function nameOfDayById(dayId) {
+    switch (dayId) {
+        case 0: return 'Su';
+        case 1: return 'Ma';
+        case 2: return 'Ti';
+        case 3: return 'Ke';
+        case 4: return 'To';
+        case 5: return 'Pe';
+        case 6: return 'La';
+    }
+
+    return undefined;
+}
+
+/**
+ * Returns the id of the day. mon=0, sun=6
+ * Invalid => -1
+ * 
+ * @param {*} name Finnish name of the day
+ */
+function getDayId(name) {
+    switch (name.subString(0, 2).toLowerCase()) {
+        case 'ma': return 0;
+        case 'ti': return 1;
+        case 'ke': return 2;
+        case 'to': return 3;
+        case 'pe': return 4;
+        case 'la': return 5;
+        case 'su': return 6;
+    }
+
+    return -1;
+
 }
 
 /**

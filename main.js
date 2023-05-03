@@ -197,6 +197,44 @@ function nameOfDay() {
 }
 
 /**
+ * Returns the name of the day on Finnish based on its id.
+ */
+function nameOfDayById(dayId) {
+    switch (dayId) {
+        case 0: return 'Ma';
+        case 1: return 'Ti';
+        case 2: return 'Ke';
+        case 3: return 'To';
+        case 4: return 'Pe';
+        case 5: return 'La';
+        case 6: return 'Su';
+    }
+
+    return undefined;
+}
+
+/**
+ * Returns the id of the day. mon=0, sun=6
+ * Invalid => -1
+ * 
+ * @param {*} name Finnish name of the day
+ */
+function getDayIdByName(name) {
+    switch (name.subString(0, 2).toLowerCase()) {
+        case 'ma': return 0;
+        case 'ti': return 1;
+        case 'ke': return 2;
+        case 'to': return 3;
+        case 'pe': return 4;
+        case 'la': return 5;
+        case 'su': return 6;
+    }
+
+    return -1;
+
+}
+
+/**
  * Updates html elements to contain course names.
  */
 function update(meatCourse, vegetarianCourse) {

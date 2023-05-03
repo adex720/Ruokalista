@@ -1,0 +1,6 @@
+<?php
+
+putenv('db_address=');
+putenv('db_images=');
+
+?>
