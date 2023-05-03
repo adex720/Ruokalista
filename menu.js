@@ -213,6 +213,8 @@ function parseCoursesOnSpecialWeek(data) {
  * Parses courses of one day from json to an object.
  */
 function coursesToObject(coursesJson) {
+    // TODO: add support for 3 meals (munkit)
+
     // Courses of the day as strings
     var meatCourse;
     var vegetarianCourse;
