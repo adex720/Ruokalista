@@ -458,6 +458,14 @@ const ACTION_DELETE_ACCOUNT = {
     'action': 'delete'
 };
 
+const ACTION_UPLOAD_SCHEDULE = {
+    'action': 'upload-schedule'
+};
+
+const ACTION_UPDATE_SCHEDULET = {
+    'action': 'update-schedule'
+};
+
 /**
  * NOT SANITIZED!!!
  */
